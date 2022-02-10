@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/styleLogin.css">
+    <title>Pensum</title>
+    <script>
+        var img;
+        var srcs = ["./assets/hidden.png", "./assets/show.png"];
+        var passwordText;
+        var pos = 0;
+        function init() {
+            passwordText = document.getElementById('password');
+
+            img = document.getElementById('imgEye');
+            img.addEventListener('mouseover', () => {
+                passwordText.type = "text";
+            });
+            img.addEventListener('mouseout', () => {
+                passwordText.type = "password";
+            });
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+    <main class="main">
+        <div class="login">
+            <form action="" class="formulario" onsubmit="return addUser">
+                <div class="camposLogin">
+                    <input class="user" type="text" name="" id="usuario" autocomplete="off" placeholder="User" autofocus>
+                    <span id="spanUser">User cannot be empty.</span> 
+                    <div class="passwordEye" id="passwordEye">
+                        <input class="password" type="password" name="" id="password" autocomplete="off" placeholder="           Password">
+                        <span class="spanEyeShow">
+                            <img src="./assets/show.svg" alt="" srcset="" class="showEye" id="imgEye">
+                        </span>
+                    </div>
+                    <span id="spanPassword">Password cannot be empty.</span>
+                    <div class="containerCarreras">
+                        <label for="carreras" class="carrera">Carrera: </label>
+                        <select class="carreras" id="carreras" required>
+                            <option value="" disabled selected id="defaultCarrera"></option>
+                            <option value="informatica">Ing Informatica</option>
+                            <option value="sistemas">Ing de Sistemas</option>
+                        </select>
+                        <span id="spanSelect">Select an option</span>
+                    </div>
+                    <div class="botones">
+                        <input type="submit" id="botonIngresar" class="ingresar" value="Log in" autofocus>
+                        <button type="button" id="botonRegistrar" class="registrar">Sign up</button>
+                    </div>
+                    <!--<p class="forgotPassword" id="forgotPassword">Forgot password</p>-->
+                </div>
+
+                <div class="no-account">
+                    <p>Don't have an account?</p>
+                    <span class="registrarse" id="botonRegistrarse">Sign in</span>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="./scripts/Factory/PensumFactory.js"></script>
+    <script src="./scripts/Factory/PensumInformaticaFactory.js"></script>
+    <script src="./scripts/Factory/PensumSistemasFactory.js"></script>
+    <script src="./scripts/hash.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="./scripts/firebasePensum.js"></script>
+    <script src="./scripts/scriptLogin.js"></script>
+</body>
+</html>

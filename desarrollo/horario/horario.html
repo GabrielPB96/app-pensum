@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Document</title>
+	<script src="../scripts/hash.js"></script>
+	
+	<script>
+		var botonVolver;
+
+		function volverPensum() {
+			window.location = localStorage.getItem('urlPensum');
+		}
+
+		function init() {
+			botonVolver = document.getElementById('volverPensum');
+			botonVolver.addEventListener('click', volverPensum);
+		}
+
+		window.addEventListener('load', init);
+	</script>
+</head>
+<body>
+	<nav>
+		<input type="button" value="Volver" id="volverPensum">
+	</nav>
+	<main class="main">
+		<div class="container-btn-editar">
+			<div class="btn-editar" id="btn-editar"><span class="text-editar" id="text-editar">Editar</span>
+				<div class="cerrar-div-agregar" id="cerrar-div-agregar">
+					<div class="line-1"></div>
+					<div class="line-2"></div>
+				</div>
+			</div>
+
+			<div class="sms-info">
+				<p style="color:white; position: absolute;right: 10px; background-color: brown;padding: 5px;">AUN EN DESARROLLO :)</p>
+			</div>
+		</div>
+
+		<div class="container-main">
+			<div class="container-opciones" id="container-opciones">
+				<p class="title-edit">Agregar Materia</p>
+				<div class="materia" id="materia">
+					<p>Materia: <span id="materia-elegida"></span></p>
+					<div class="btn-materia" id="btn-materia">Elegir Materia</div>
+					<div class="menu-semestres" id="menu-semestres">
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span1">Semestre 1</span>
+								<ul class="list-sem list-semestre1">
+									<li id="Álgebra I">Álgebra I</li>
+									<li id="Calculo I">Calculo I</li>
+									<li id="Ingles I">Ingles I</li>
+									<li id="Introduccion a la Programacion">Introduccion a la Programacion</li>
+									<li id="Metodologia">Metodologia</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span2">Semestre 2</span>
+								<ul class="list-sem list-semestre2">
+									<li id="Álgebra II">Álgebra II</li>
+									<li id="Cálculo II">Cálculo II</li>
+									<li id="Arquitectura de Computadoras I">Arquitectura de Computadoras I</li>
+									<li id="Ingles II">Ingles II</li>
+									<li id="Elementos de Programación y Estructura de Datos">Elementos de Programación y Estructura de Datos</li>
+									<li id="Programación">Programación</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span3">Semestre 3</span>
+								<ul class="list-sem list-semestre3">
+									<li id="Lógica">Lógica</li>
+									<li id="Cálculo Numérico">Cálculo Numérico</li>
+									<li id="Arquitectura de Computadoras II">Arquitectura de Computadoras II</li>
+									<li id="Organización y Metodos">Organización y Metodos</li>
+									<li id="Metodos y Tecnicas de Programación">Metodos y Tecnicas de Programación</li>
+									<li id="Teoría de Grafos">Teoría de Grafos</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span4">Semestre 4</span>
+								<ul class="list-sem list-semestre4">
+									<li id="Programación Funcional">Programación Funcional</li>
+									<li id="Probabilidad y Estadística">Probabilidad y Estadística</li>
+									<li id="Taller de Programación en Bajo Nivel">Taller de Programación en Bajo Nivel</li>
+									<li id="Base de Datos I">Base de Datos I</li>
+									<li id="Sistemas de Información">Sistemas de Información</li>
+									<li id="Algoritmos Avanzados">Algoritmos Avanzados</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span5">Semestre 5</span>
+								<ul class="list-sem list-semestre5">
+									<li id="Inteligencia Artificial I">Inteligencia Artificial I</li>
+									<li id="Taller de Sistemas Operativos">Taller de Sistemas Operativos</li>
+									<li id="Teoría de Automatas y Lenguajes Formales">Teoría de Automatas y Lenguajes Formales</li>
+									<li id="Base de Datos II">Base de Datos II</li>
+									<li id="Sistemas de Información II">Sistemas de Información II</li>
+									<li id="Graficación por Computadora">Graficación por Computadora</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span6">Semestre 6</span>
+								<ul class="list-sem list-semestre6">
+									<li id="Inteligencia Artificial II">Inteligencia Artificial II</li>
+									<li id="Redes de Computadoras">Redes de Computadoras</li>
+									<li id="Estructuras y Semántica de Lenguajes de Programación">Estructuras y Semántica de Lenguajes de Programación</li>
+									<li id="Taller de Base de Datos">Taller de Base de Datos</li>
+									<li id="Ingeniería de Software">Ingeniería de Software</li>
+									<li id="Programación Web">Programación Web</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span7">Semestre 7</span>
+								<ul class="list-sem list-semestre7">
+									<li id="Interacción Humano Computadora">Interacción Humano Computadora</li>
+									<li id="Tecnología de Redes Avanzada">Tecnología de Redes Avanzada</li>
+									<li id="Electiva I">Electiva I</li>
+									<li id="Electiva II">Electiva II</li>
+									<li id="Taller de Ingeniería de Software">Taller de Ingeniería de Software</li>
+									<li id="Arquitectura de Software">Arquitectura de Software</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span8">Semestre 8</span>
+								<ul class="list-sem list-semestre8">
+									<li id="Electiva III">Electiva III</li>
+									<li id="Electiva IV">Electiva IV</li>
+									<li id="Electiva V">Electiva V</li>
+									<li id="Taller de Grado I">Taller de Grado I</li>
+									<li id="Evalución y Auditoría de Sistemas">Evalución y Auditoría de Sistemas</li>
+									<li id="Taller de Grado II">Taller de Grado II</li>
+								</ul>
+							</div>
+						</div>
+						<div class="semestres" id="semestres">
+							<div class="name-semestre">
+								<span id="span9">Semestre 9</span>
+								<ul class="list-sem list-semestre9">
+									<li id="Modalidad de Titulación">Modalidad de Titulación</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="container-dia">
+					<label for="dia">
+						Dia: 
+						<select name="" id="dia-select">
+							<option value="lunes">Lunes</option>
+							<option value="martes">Martes</option>
+							<option value="miercoles">Miercoles</option>
+							<option value="jueves">Jueves</option>
+							<option value="viernes">Viernes</option>
+							<option value="sabado">Sabado</option>
+						</select>
+					</label>
+				</div>
+
+				<div class="containerDe">
+					<p class="text-de">De: </p>
+					<div class="hora">
+						<div class="horaInitMin" id="containerMinInit">
+							<p id="value-min-init">06</p>
+							<div class="container-buttons" id="containerButtons">
+								<div class="minutos-init" id="subirButton">
+									<div class="subir"></div>
+								</div>
+						
+								<div class="minutos-init" id="bajarButton">
+									<div class="bajar"></div>
+								</div>
+							</div>
+						</div>
+						<samp class="divPuntos">:</samp>
+						<div class="horaInitMin" id="containerMinInit2">
+							<p id="value-min-init-2">00</p>
+							<div class="container-buttons" id="containerButtons2">
+								<div class="minutos-init" id="subirButton2">
+									<div class="subir"></div>
+								</div>
+						
+								<div class="minutos-init" id="bajarButton2">
+									<div class="bajar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="containerDe">
+					<p class="text-hasta">Hasta: </p>
+					<div class="hora">
+						<div class="horaFinMin" id="containerMinFin">
+							<p id="value-min-fin">06</p>
+							<div class="container-buttons" id="containerButtonsFin">
+								<div class="minutos-init" id="subirButtonFin">
+									<div class="subir"></div>
+								</div>
+					
+								<div class="minutos-init" id="bajarButtonFin">
+									<div class="bajar"></div>
+								</div>
+							</div>
+						</div>
+						<samp class="divPuntos">:</samp>
+						<div class="horaFinMin" id="containerMinFin2">
+							<p id="value-min-fin-2">00</p>
+							<div class="container-buttons" id="containerButtonsFin2">
+								<div class="minutos-init" id="subirButtonFin2">
+									<div class="subir"></div>
+								</div>
+					
+								<div class="minutos-init" id="bajarButtonFin2">
+									<div class="bajar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<label for="color">Color
+					<input type="color" name="" id="color">
+				</label>
+
+				<div class="new-materia" id="new_materia" draggable="true">
+				</div>
+
+				<input type="button" value="Generar" class="generar" id="generar" disabled>
+				<input type="button" value="Agregar" class="btn-agregar" id="btn-agregar">
+				<input type="button" value="Back" class="btn-back" id="btn-back" disabled>
+			</div>
+			<div class="btn-guardar" id="btn-guardar">Guardar</div>
+		</div>
+
+		<div class="container-horario" id="container-horario">
+			<div class="popup" id="popup">
+				<div class="img">
+					<img src="./arrow.gif" alt="" srcset="" width="50" height="150">
+					<p>Arrastre aquí</p>
+				</div>
+			</div>
+			<table class="horario" id="horario">
+				<caption class="titulo-horario">HORARIO</caption>
+				<tr>
+					<th>Hora</th>
+					<th>Lunes</th>
+					<th>Martes</th>
+					<th>Miercoles</th>
+					<th>Jueves</th>
+					<th>Viernes</th>
+					<th>Sabado</th>
+				</tr>
+				<tr>
+					<td>06:45</td>
+					<td id="0645-lunes"></td>
+					<td id="0645-martes"></td>
+					<td id="0645-miercoles"></td>
+					<td id="0645-jueves"></td>
+					<td id="0645-viernes"></td>
+					<td id="0645-sabado"></td>
+				</tr>
+	
+				<tr>
+					<td>07:30</td>
+					<td id="0730-lunes"></td>
+					<td id="0730-martes"></td>
+					<td id="0730-miercoles"></td>
+					<td id="0730-jueves"></td>
+					<td id="0730-viernes"></td>
+					<td id="0730-sabado"></td>
+				</tr>
+
+				<tr>
+					<td>08:15</td>
+					<td id="0815-lunes"></td>
+					<td id="0815-martes"></td>
+					<td id="0815-miercoles"></td>
+					<td id="0815-jueves"></td>
+					<td id="0815-viernes"></td>
+					<td id="0815-sabado"></td>
+				</tr>
+
+				<tr>
+					<td>09:00</td>
+					<td id="0900-lunes"></td>
+					<td id="0900-martes"></td>
+					<td id="0900-miercoles"></td>
+					<td id="0900-jueves"></td>
+					<td id="0900-viernes"></td>
+					<td id="0900-sabado"></td>
+				</tr>
+
+				<tr>
+					<td>09:45</td>
+					<td id="0945-lunes"></td>
+					<td id="0945-martes"></td>
+					<td id="0945-miercoles"></td>
+					<td id="0945-jueves"></td>
+					<td id="0945-viernes"></td>
+					<td id="0945-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1030">10:30</td>
+					<td id="1030-lunes"></td>
+					<td id="1030-martes"></td>
+					<td id="1030-miercoles"></td>
+					<td id="1030-jueves"></td>
+					<td id="1030-viernes"></td>
+					<td id="1030-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1145">11:15</td>
+					<td id="1145-lunes"></td>
+					<td id="1145-martes"></td>
+					<td id="1145-miercoles"></td>
+					<td id="1145-jueves"></td>
+					<td id="1145-viernes"></td>
+					<td id="1145-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1200">12:00</td>
+					<td id="1200-lunes"></td>
+					<td id="1200-martes"></td>
+					<td id="1200-miercoles"></td>
+					<td id="1200-jueves"></td>
+					<td id="1200-viernes"></td>
+					<td id="1200-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1245">12:45</td>
+					<td id="1245-lunes"></td>
+					<td id="1245-martes"></td>
+					<td id="1245-miercoles"></td>
+					<td id="1245-jueves"></td>
+					<td id="1245-viernes"></td>
+					<td id="1245-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1330">13:30</td>
+					<td id="1330-lunes"></td>
+					<td id="1330-martes"></td>
+					<td id="1330-miercoles"></td>
+					<td id="1330-jueves"></td>
+					<td id="1330-viernes"></td>
+					<td id="1330-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1415">14:15</td>
+					<td id="1415-lunes"></td>
+					<td id="1415-martes"></td>
+					<td id="1415-miercoles"></td>
+					<td id="1415-jueves"></td>
+					<td id="1415-viernes"></td>
+					<td id="1415-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1500">15:00</td>
+					<td id="1500-lunes"></td>
+					<td id="1500-martes"></td>
+					<td id="1500-miercoles"></td>
+					<td id="1500-jueves"></td>
+					<td id="1500-viernes"></td>
+					<td id="1500-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1545">15:45</td>
+					<td id="1545-lunes"></td>
+					<td id="1545-martes"></td>
+					<td id="1545-miercoles"></td>
+					<td id="1545-jueves"></td>
+					<td id="1545-viernes"></td>
+					<td id="1545-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1630">16:30</td>
+					<td id="1630-lunes"></td>
+					<td id="1630-martes"></td>
+					<td id="1630-miercoles"></td>
+					<td id="1630-jueves"></td>
+					<td id="1630-viernes"></td>
+					<td id="1630-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1715">17:15</td>
+					<td id="1715-lunes"></td>
+					<td id="1715-martes"></td>
+					<td id="1715-miercoles"></td>
+					<td id="1715-jueves"></td>
+					<td id="1715-viernes"></td>
+					<td id="1715-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1800">18:00</td>
+					<td id="1800-lunes"></td>
+					<td id="1800-martes"></td>
+					<td id="1800-miercoles"></td>
+					<td id="1800-jueves"></td>
+					<td id="1800-viernes"></td>
+					<td id="1800-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1845">18:45</td>
+					<td id="1845-lunes"></td>
+					<td id="1845-martes"></td>
+					<td id="1845-miercoles"></td>
+					<td id="1845-jueves"></td>
+					<td id="1845-viernes"></td>
+					<td id="1845-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="1930">19:30</td>
+					<td id="1930-lunes"></td>
+					<td id="1930-martes"></td>
+					<td id="1930-miercoles"></td>
+					<td id="1930-jueves"></td>
+					<td id="1930-viernes"></td>
+					<td id="1930-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="2015">20:15</td>
+					<td id="2015-lunes"></td>
+					<td id="2015-martes"></td>
+					<td id="2015-miercoles"></td>
+					<td id="2015-jueves"></td>
+					<td id="2015-viernes"></td>
+					<td id="2015-sabado"></td>
+				</tr>
+
+				<tr>
+					<td id="2100">21:00</td>
+					<td id="2100-lunes"></td>
+					<td id="2100-martes"></td>
+					<td id="2100-miercoles"></td>
+					<td id="2100-jueves"></td>
+					<td id="2100-viernes"></td>
+					<td id="2100-sabado"></td>
+				</tr>
+			</table>
+		</div>
+	</main>
+	<!-- <script src="modernizr-custom.js"></script>  -->
+	<!-- <script src="modernizr-2.0.6.js"></script> -->
+	<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+	<script src="../scripts/firebasePensum.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

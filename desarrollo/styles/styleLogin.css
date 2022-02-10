@@ -1,0 +1,274 @@
+hmtl, body{
+    height: 100%;
+}
+
+body{
+    background-image: url('../assets/fondo4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.login{
+    width: 400px;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    /*background-color: rgba(71, 129, 236, 0.3);*/
+    box-sizing: border-box;
+    /*border-radius: 5px;*/
+    /*border: 1px solid #fff;*/
+}
+
+.camposLogin{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /*height: 150px;*/
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(48, 53, 63, 0.3);
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+.botones{
+    width: 90%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-self: center;
+}
+
+.no-account{
+    display: flex;
+    padding: 10px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(48, 53, 63, 0.3);
+    border-radius: 5px;
+    border: 1px solid #fff;
+    box-sizing: none;
+    color: #fff;
+}
+
+label{
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*.forgotPassword{
+    margin: 0px;
+    color: #03225c;
+    cursor: pointer;
+    transition: .3s ease .0s;
+    font-size: 13px;
+}*/
+
+.registrarse{
+    color: #3897f0;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: .3s ease .0s;
+}
+
+.ingresar, .registrar{
+    width: 90%;
+    cursor: pointer;
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    transition: .3s ease .0s;
+    background-color: #346dd6;
+    margin: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+}
+
+.ingresar:hover, .registrar:hover, .registrarse:hover, .forgotPassword:hover{
+    transform: scale(1.1);
+}
+
+.registrar{
+    display: none;
+    width: 70%;
+    transition: .2s ease .1s;
+}
+.registrar:hover{
+    transform: scale(1.05);
+    box-shadow: 2px 2px 5px black;
+}
+
+.ingresar{
+    width: 70%;
+    transition: .2s ease .1s;
+}
+.ingresar:hover{
+    transform: scale(1.05);
+    box-shadow: 2px 2px 5px black;
+}
+
+#password{
+    width: 100%;
+    height: 30px;
+    margin: 0px;
+    text-align: center;
+    border-radius: 7px;
+    border: none;
+}
+
+#usuario{
+    width: 70%;
+    height: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-radius: 7px;
+    border: none;
+}
+
+#password:focus{
+    outline: none;
+}
+
+#usuario:focus{
+    outline: none;
+}
+
+.password::placeholder{
+    background-image: url("../assets/password.svg");
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: 3.5rem center;
+}
+
+.user::placeholder{
+    background-image: url("../assets/user.svg");
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: 4rem center;
+}
+
+#spanUser, #spanPassword{
+    margin-bottom: 5px;
+    font-size: 13px;
+    justify-self: flex-start;
+    display: none;
+    color: rgb(156, 4, 4);
+}
+
+.password{
+    margin: 0px;
+}
+
+.showEye{
+    width: 15px;
+    height: 15px;
+    align-self: center;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-right: 15px;
+    transition: .3s ease .1s;
+}
+.showEye:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.passwordEye{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    height: 33px;
+    width: 70%;
+    border-radius: 7px;
+}
+
+.carreras{
+    align-self: flex-start;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+#spanSelect{
+    margin-top: 0px;
+    display: none;
+    font-size: 13px;
+    text-align: right;
+    color: rgb(156, 4, 4);
+}
+
+.carrera{
+    color: #fff;
+}
+
+@media (max-width: 550px) {
+    /*.botones{
+        flex-direction: column;
+    }*/
+
+    body{
+        background-image: url('../assets/celFondo3.jfif');
+    }
+
+    .passwordEye{
+        width: 90%;
+    }
+
+    #usuario{
+        width: 90%;
+    }
+
+    .ingresar{
+        order: 2;
+        width: 90%;
+    }
+
+    .registrarse{
+        order: 3;
+    }
+
+    .registrar{
+        order: 1;
+        width: 90%;
+    }
+
+    .login{
+        width: 70%;
+        min-width: 300px;
+    }
+
+    .user::placeholder{
+        background-position: 3rem center;
+    }
+    .password::placeholder{
+        background-position: 2.5rem center;
+    }
+
+    .carreras{
+        margin-left: 5px;
+    }
+    .carrera{
+        margin-right: 0px;
+    }
+}
