@@ -463,7 +463,7 @@ td.hidden{
 
 @media (max-width : 800px) {
     body{
-        background-image: url('./horario-cel4.jfif');
+        background-image: url('./horario-cel.jfif');
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;

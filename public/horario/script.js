@@ -22,8 +22,13 @@ var popup, horario, dia;
 
 var mobile;
 
+var mapCellsDeletes = new Map();
+
 function addPila(id_element) {
     if (pilaEdicion.length < 3) {
+        pilaEdicion.push(id_element);
+    }else{
+        pilaEdicion.shift();
         pilaEdicion.push(id_element);
     }
 }
@@ -37,19 +42,19 @@ function volverPaso() {
         parent_remove.removeChild(child_remove);
         if (parent_remove.childNodes.length == 1) {
             parent_remove.style.border = '2px solid black';
-            parent_remove.style.color = 'black';
+            parent_remove.style.color = 'white';
             parent_remove.style.backgroundColor = parent_remove.childNodes[parent_remove.childNodes.length - 1].getAttribute('className');
         } else if (parent_remove.childNodes.length == 0) {
             parent_remove.style.backgroundColor = 'transparent';
             parent_remove.style.border = '2px solid black';
-            parent_remove.style.color = 'black';
+            parent_remove.style.color = 'white';
             parent_remove.rowSpan = 1;
             habilitarCeldasBorradas(object.cellsDelete);
         }
 
-        if (pilaEdicion.length == 0) {
+        /* if (pilaEdicion.length == 0) {
             boton_back.disabled = true;
-        }
+        } */
     }
 }
 
@@ -257,7 +262,7 @@ function init() {
 
     addEventNameMaterias();
 
-    boton_back.addEventListener('click', volverPaso);
+    /* boton_back.addEventListener('click', volverPaso); */
 
     botonMaterias.addEventListener('click', () => {
         botonMaterias.classList.add('click');
@@ -350,9 +355,9 @@ function init() {
             e.preventDefault();
         }
         
-        if(pilaEdicion.length == 0) {
+        /* if(pilaEdicion.length == 0) {
             boton_back.disabled = false;
-        }
+        } */
 
         agregarMateria();
     });
@@ -360,9 +365,9 @@ function init() {
     colorMateria.addEventListener('input', activarGenerador);
 
     boton_agregar.addEventListener('click', ()=>{
-        if(pilaEdicion.length == 0) {
+        /* if(pilaEdicion.length == 0) {
             boton_back.disabled = false;
-        }
+        } */
         agregarMateria();
         boton_agregar.classList.remove('show');
     });
@@ -431,15 +436,19 @@ function agregarMateria() {
         let new_p = document.createElement('p');
         new_p.innerHTML = newMateria.textContent;
         let id_p = parseInt(Math.random() * 500)+salt(5);//agregar un salt!!!
-        addPila({
+        /* addPila({
             'id' : id_p,
             'cellsDelete' : cellsDelete
-        });
+        }); */
+        /* mapCellsDeletes.set(id_p, cellsDelete); */
+        box.setAttribute('cellsDeletes', cellsDelete);
         new_p.setAttribute('className', newMateria.style.backgroundColor);
         new_p.setAttribute('id', id_p);
         box.appendChild(new_p);
+        box.style.position = 'relative';
         newMateria.classList.remove('show');
         //console.log(pilaEdicion);
+        createPopup(box);
     }
 }
 
@@ -474,7 +483,7 @@ function tamañoSpan() {
     let minF = parseInt(minFin.innerHTML + minFin2.innerHTML);
     let dif = ((parseInt(minF / 100)) * 60 + (minF % 100)) - ((parseInt(minI / 100)) * 60 + (minI % 100));
     let cantSpan = dif / 45;
-    return cantSpan + 1;
+    return cantSpan; // cantSpan + 1;
 }
 
 function isMobile() {
@@ -508,7 +517,8 @@ function guardarEstadoHorario() {
                     'innerHTML' : c.innerHTML,
                     'rowSpan' : c.rowSpan,
                     'class' : clase,
-                    'color' : c.style.backgroundColor
+                    'color' : c.style.backgroundColor,
+                    'cellsDeletes' : c.getAttribute('cellsDeletes')
                 };
                 HORARIO.push(obH);
             }
@@ -525,15 +535,23 @@ function readHorario() {
     let CARRERA =   localStorage.getItem('carrera');
     dataBase.child('z-usuarios').child(CARRERA).child(USUARIO).on('value', 
     function(s){
-        var hor = s.val().Horario;
-        for(let i of hor) {
-            let cel = document.getElementById(i.id);
-            cel.innerHTML = i.innerHTML;
-            cel.style.backgroundColor = i.color;
-            if(i.class != '') {
-                cel.classList.add(i.class);
+        try{
+            var hor = s.val().Horario;
+            for(let i of hor) {
+                let cel = document.getElementById(i.id);
+                cel.innerHTML = i.innerHTML;
+                cel.style.backgroundColor = i.color;
+                if(i.class != '') {
+                    cel.classList.add(i.class);
+                }else{
+                    createPopupReadHorario(cel);
+                }
+                cel.rowSpan = i.rowSpan;
+                cel.style.position = 'relative';
+                
             }
-            cel.rowSpan = i.rowSpan;
+        }catch(e){
+            console.log('not found');
         }
     }
 )
