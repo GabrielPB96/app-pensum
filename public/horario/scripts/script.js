@@ -9,7 +9,7 @@ var minFin2, botonMinFinS2, botonMinFinB2, containerMinFin2;
 
 var botonMaterias, menuSemestres, containersMaterias;
 
-var boton_editar, boton_guardar, boton_generar, boton_back, boton_agregar;
+var boton_editar, boton_guardar, boton_generar, boton_back, boton_agregar, container_btn_guardar;
 
 var containerEdicion;
 
@@ -154,6 +154,8 @@ function initNodos() {
     boton_back = document.getElementById('btn-back');
 
     boton_agregar = document.getElementById('btn-agregar');
+
+    container_btn_guardar = document.getElementById('container-btn-guardar');
 }
 
 function addEventNameMaterias() {
@@ -310,6 +312,7 @@ function init() {
             containerEdicion.classList.add('show');
             boton_guardar.classList.add('show');
         }
+        container_btn_guardar.classList.toggle('hidden');
     });
 
     boton_guardar.addEventListener('click', () => {
@@ -319,6 +322,7 @@ function init() {
         guardarEstadoHorario();
         boton_editar.childNodes[0].classList.remove('hidden');
         boton_editar.childNodes[2].classList.remove('show');
+        container_btn_guardar.classList.toggle('hidden');
     });
 
     boton_generar.addEventListener('click', crearMateria);
@@ -384,6 +388,10 @@ function init() {
         document.getElementById('hora-de').classList.add('hidden');
         document.getElementById('hora-hasta').classList.add('hidden');
     }
+
+    container_btn_guardar.addEventListener('click', () =>{
+        guardarEstadoHorario();
+    });
 }
 
 function isMobile() {
@@ -398,6 +406,7 @@ function isMobile() {
 }
 
 function guardarEstadoHorario() {
+    document.getElementById('loader').classList.toggle('show-loader');
     /* console.log(materiasCreadas); */
     HORARIO = []
     let USUARIO = localStorage.getItem('usuario');
@@ -435,6 +444,14 @@ function guardarEstadoHorario() {
     dataBase.child('z-usuarios').child(CARRERA).child(USUARIO).update({
         'Horario' : HORARIO
     });
+    setTimeout(()=>{
+        document.getElementById('loader').classList.toggle('show-loader');
+        document.getElementById('text-loader-guardar').classList.toggle('show');
+    },1000)
+
+    setTimeout(()=>{
+        document.getElementById('text-loader-guardar').classList.toggle('show');
+    },2000)
 }
 
 function readHorario() {
@@ -451,8 +468,9 @@ function readHorario() {
                     if(i.class != '') {
                         cel.classList.add(i.class);
                     }else{
-                        createPopupReadHorario(cel);
+                        createPopupReadHorario(cel, i.color);
                         materiasLeidas.set(i.id, i.cellsDeletes);
+                        cel.style.cursor = 'pointer';
                     }
                     cel.rowSpan = i.rowSpan;
                     cel.style.position = 'relative';

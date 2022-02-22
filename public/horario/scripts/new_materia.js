@@ -63,6 +63,7 @@ function agregarMateria() {
         new_p.setAttribute('id', id_p);
         box.appendChild(new_p);
         box.style.position = 'relative';
+        box.style.cursor = 'pointer';
         newMateria.classList.remove('show');
         createPopup(box);
     }

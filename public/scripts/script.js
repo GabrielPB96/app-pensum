@@ -116,6 +116,7 @@ function init() {
 
     dataPensum = firebase.database().ref(r);
     if(localStorage.getItem('carrera') == 'informatica') {
+        console.log(1);
         readInfo('semestre1');
         readInfo('semestre2');
         readInfo('semestre3');
@@ -371,41 +372,44 @@ function readInfo(semestre) {
         )
 }
 
+
 function actualizarInfo() {    
     var textSemestre = "semestre";
-
     for(let i = 1; i <= 9; i++){
-        dataPensum.child(textSemestre + i).on('child_changed', (s) => {
-            var ob = s.val();
-            var nodoAct = document.getElementById(ob.id).childNodes[3];
-            if(ob.estadoActual == APROBADA) {
-                aprobadasCant++;
-                nodoAct.style.background = "green";
-                document.getElementById("aprobada"+ob.id).checked = true;
-                //nodoAct.innerHTML = "hola";
-                if(ob.estadoAnterior == CURSANDO) {
-                    if(cursandoCant != 0) cursandoCant--;
+        dataPensum.child(textSemestre + i)
+        .on('child_changed', (s) => {
+                var ob = s.val();
+                var nodoAct = document.getElementById(ob.id).childNodes[3];
+                if(ob.estadoActual == APROBADA) {
+                        aprobadasCant++;
+                        nodoAct.style.background = "green";
+                        document.getElementById("aprobada"+ob.id).checked = true;
+                        //nodoAct.innerHTML = "hola";
+                        if(ob.estadoAnterior == CURSANDO) {
+                            if(cursandoCant != 0) cursandoCant--;
+                        }
+                }else if(ob.estadoActual == CURSANDO) {
+                        cursandoCant++;
+                        nodoAct.style.background = "orange";
+                        document.getElementById("cursando"+ob.id).checked = true;
+                        if(ob.estadoAnterior == APROBADA) {
+                            if(aprobadasCant != 0) aprobadasCant--;
+                        }
+                }else{
+                        nodoAct.style.background = "gray";
+                        document.getElementById("no_tomada"+ob.id).checked = true;
+                        if(ob.estadoAnterior == APROBADA) {
+                            if(aprobadasCant != 0) aprobadasCant--;
+                        }else if(ob.estadoAnterior == CURSANDO) {
+                            if(cursandoCant != 0) cursandoCant--;
+                        }
                 }
-            }else if(ob.estadoActual == CURSANDO) {
-                cursandoCant++;
-                nodoAct.style.background = "orange";
-                document.getElementById("cursando"+ob.id).checked = true;
-                if(ob.estadoAnterior == APROBADA) {
-                    if(aprobadasCant != 0) aprobadasCant--;
-                }
-            }else{
-                nodoAct.style.background = "gray";
-                document.getElementById("no_tomada"+ob.id).checked = true;
-                if(ob.estadoAnterior == APROBADA) {
-                    if(aprobadasCant != 0) aprobadasCant--;
-                }else if(ob.estadoAnterior == CURSANDO) {
-                    if(cursandoCant != 0) cursandoCant--;
-                }
+                document.getElementById("h4Apro").innerHTML = "Aprobadas: " + aprobadasCant;
+                document.getElementById("h4Cur").innerHTML = "Cursando: " + cursandoCant;
             }
-            document.getElementById("h4Apro").innerHTML = "Aprobadas: " + aprobadasCant;
-            document.getElementById("h4Cur").innerHTML = "Cursando: " + cursandoCant;
-        });
+        );
     }
+    
 }
 
 

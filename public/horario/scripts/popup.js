@@ -139,7 +139,7 @@ function createPopup(celda) {
 	});
 }
 
-function createPopupReadHorario(celda) {
+function createPopupReadHorario(celda, color) {
 	celda.addEventListener('click', (e) => {
 		try {
 			if (e.target.style.position != 'absolute') {
@@ -189,8 +189,10 @@ function createPopupReadHorario(celda) {
 	});
 
 	celda.childNodes[1].childNodes[1].childNodes[3].addEventListener('click', ()=>{
-		celda.style.backgroundColor = changeColor.value;
+		celda.style.backgroundColor = celda.childNodes[1].childNodes[1].childNodes[1].value;
 	});
+
+	celda.childNodes[1].childNodes[1].childNodes[1].value = convertHexadecimal(obtenerValoresRGB(color));
 }
 
 function convertHexadecimal(colores) {

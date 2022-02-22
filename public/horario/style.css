@@ -1,13 +1,15 @@
 body{
-    background-image: url('./assets/fondo-horario.jpg');
+    /* background-image: url('./assets/fondo-horario.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
+    background-color: rgb(191, 182, 241);
 }
 
 .titulo-horario{
     color: white;
     font-weight: bold;
+    font-size: 30px;
 }
 
 
@@ -49,11 +51,87 @@ body{
     transition: .2s ease .0s;
 }
 
+.container-btn-guardar{
+    background-color: cornflowerblue;
+    padding: 10px;
+    border-radius: 5px;
+    transition: .2s ease .0s;
+    margin-left: 10px;
+}
+.container-btn-guardar:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.container-btn-guardar.hidden{
+    display: none;
+}
+
+.container-loader{
+    margin-left: 10px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    align-self: center;
+}
+.text-loader-guardar{
+    display: none;
+}
+.text-loader-guardar.show{
+    display: block;
+    color: green;
+    background-color: azure;
+    position: absolute;
+    padding: 5px;
+    border-radius: 10%;
+    top: -20px;
+    font-weight: bold;
+    animation: ocultarTexto 1s linear;
+}
+@keyframes ocultarTexto {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+.loader{
+    display: none;
+}
+.loader.show-loader{
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    border: solid 2px transparent;
+    border-top-color:green;
+    border-left-color: green;
+    border-radius: 50%;
+    animation: loader 1s linear infinite;
+}
+@keyframes loader {
+    0%{
+        transform: translate(-50%, -50%) rotate(0deg);
+        border-top-color: yellow;
+        border-left-color: yellow;
+        border-right-color: yellow;
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(360deg);
+        border-top-color:green;
+        border-left-color: green;
+        border-right-color: green;
+    }
+}
+
 .container-btn-editar{
     width: 100%;
     display: flex;
     position: relative;
-    justify-content: space-between;/* flex-start; */
+    justify-content: flex-start;/* flex-start; */
     /* background-color: brown; */
 }
 
@@ -449,6 +527,9 @@ td.hidden{
     transform: rotate(-50deg);
 }
 
+.text-editar{
+    transition: all .3;
+}
 .text-editar.hidden{
     display: none;
 }
