@@ -114,8 +114,6 @@ function crearPopup(celda) {
 	popup.appendChild(botonDelete);
 
 	controlPopup(popup);
-
-
 }
 
 function controlPopup(popup) {
@@ -171,7 +169,7 @@ function createPopupReadHorario(celda) {
 		celda.childNodes[1].childNodes[0].style.color = 'rgba(0, 0, 0, 0.3)';
 	});
 
-	celda.childNodes[1].childNodes[1].addEventListener('click', () => {
+	celda.childNodes[1].childNodes[2].addEventListener('click', () => {
 		if (materiasCreadas.get(celda.id) != undefined) {
 			let objts = materiasCreadas.get(celda.id);
 			for (let i of objts) {
@@ -188,6 +186,10 @@ function createPopupReadHorario(celda) {
 		celda.innerHTML = "";
 		celda.rowSpan = 1;
 		celda.style.backgroundColor = 'transparent';
+	});
+
+	celda.childNodes[1].childNodes[1].childNodes[3].addEventListener('click', ()=>{
+		celda.style.backgroundColor = changeColor.value;
 	});
 }
 

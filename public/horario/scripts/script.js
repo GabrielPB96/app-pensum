@@ -398,11 +398,11 @@ function isMobile() {
 }
 
 function guardarEstadoHorario() {
-    console.log(materiasCreadas);
+    /* console.log(materiasCreadas); */
     HORARIO = []
     let USUARIO = localStorage.getItem('usuario');
     let CARRERA =   localStorage.getItem('carrera');
-    console.log(USUARIO);
+    /*  */console.log(USUARIO);
     console.log(CARRERA);
     let filas = Array.from(horario.children[1].children);
     filas.shift();
