@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/styleLogin.css">
+    <link rel="stylesheet" href="./styles/mediaQueriLogin.css" media="(max-width: 550px)">
     <title>Pensum</title>
     <script>
         var img;
@@ -43,10 +44,11 @@
                     <span id="spanPassword">Password cannot be empty.</span>
                     <div class="containerCarreras">
                         <label for="carreras" class="carrera">Carrera: </label>
+                        
                         <select class="carreras" id="carreras" required>
-                            <option value="" disabled selected id="defaultCarrera"></option>
-                            <option value="informatica">Ing Informatica</option>
-                            <option value="sistemas">Ing de Sistemas</option>
+                            <option value="" disabled id="defaultCarrera"></option>
+                            <option value="informatica" selected>Ing Informatica</option>
+                            <!-- <option value="sistemas">Ing de Sistemas</option> -->
                         </select>
                         <span id="spanSelect">Select an option</span>
                     </div>
@@ -55,6 +57,20 @@
                         <button type="button" id="botonRegistrar" class="registrar">Sign up</button>
                     </div>
                     <!--<p class="forgotPassword" id="forgotPassword">Forgot password</p>-->
+                    <div class="container-avatar" id="container-avatar">
+                        <div class="button-avatar" id="button-avatar">Elige un Avatar</div>
+                        <div class="popup-avatar" id="popup-avatar">
+                            <img src="./assets/avatar/avtF1.png" alt="" id="avt1">
+                            <img src="./assets/avatar/avtF2.png" alt="" id="avt2">
+                            <img src="./assets/avatar/avtF3.png" alt="" id="avt3">
+                            <img src="./assets/avatar/avtF4.png" alt="" id="avt4">
+                            <img src="./assets/avatar/avtM1.png" alt="" id="avt5">
+                            <img src="./assets/avatar/avtM2.png" alt="" id="avt6">
+                            <img src="./assets/avatar/avtM3.png" alt="" id="avt7">
+                            <img src="./assets/avatar/avtM4.png" alt="" id="avt8">
+                            <img src="./assets/avatar/avtM5.png" alt="" id="avt9">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="no-account">

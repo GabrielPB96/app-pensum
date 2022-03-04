@@ -1,0 +1,120 @@
+@media (max-width: 550px) {
+    body{
+        background-image: url('../../assets/coffe1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+    }
+
+    .header h1{
+        color: #fafafa;
+        box-shadow: 2px 2px rgb(224, 216, 216);
+    }
+
+    .main .semestre .title{
+        width: 90%;
+    }
+
+    .main{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        row-gap: 20px;
+        column-gap: 5px;
+        justify-content: center;
+        padding: 0;
+        margin: auto;
+        align-content: center;
+    }
+    
+    .main .semestre{
+        flex-direction: column;
+        background-color: rgba(196, 109, 77,.3);
+        border-radius: 10px;
+    }
+
+    .nombreMateriaEstado{
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .menuEstados{
+        margin: 0 5px;
+        align-self: flex-start;
+    }
+
+    .nombre p{
+        font-size: 12px;
+        margin: 0px 0px;
+    }
+
+    .main .semestre .materia{
+        width: 70%;
+        height: 130px;
+    }
+
+    .numMateria p{
+        font-size: 10px;
+    }
+
+    .nombre{
+        width: 100%;
+        margin: 0;
+    }
+
+    .hamburguesa div{
+        width: 10px;
+        height: 2px;
+        background-color: black;
+        margin: 1px;
+        border-radius: 3px;
+    }
+
+    .estados label{
+        font-size: 7px;
+        margin-left: 2px;
+        margin-top: 2px;
+    }
+    
+    .estados .estadosRadio{
+        transform: scale(.3);
+    }
+
+    #semestre1{
+        background-color: rgba(8, 99, 177,.3);
+    }
+
+    #semestre2{
+        background-color: rgba(22, 116, 114,.3);
+    }
+
+    #semestre3{
+        background-color: rgba(43, 199, 199, .3);
+    }
+
+    #semestre4{
+        background-color: rgba(61, 199, 156,.3);
+    }
+
+    #semestre5{
+        background-color: rgba(167, 213, 40,.3);
+    }
+
+    #semestre6{
+        background-color: rgba(73, 127, 25,.3);
+    }
+
+    #semestre7{
+        background-color: rgba(68, 78, 20,.3);
+    }
+
+    #semestre8{
+        background-color: rgba(196, 54, 59,.3);
+    }
+
+    #semestre9{
+        background-color: rgba(232, 124, 40,.3);
+    }
+}

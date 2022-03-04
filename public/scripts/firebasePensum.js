@@ -72,7 +72,7 @@ function stateUpdate(semestre, id, estado) {
 
 function crearPensumSistemas(usuario, carrera) {}
 
-function crearPensumInformatica(usuario, carrera) {
+/* function crearPensumInformatica(usuario, carrera) {
     //PRIMER SEMESTRE
     write(usuario, carrera, NO_TOMADA, NO_TOMADA, 'Álgebra 1', 'Algebra1', 'semestre1');
     write(usuario, carrera, NO_TOMADA, NO_TOMADA, 'Cálculo 1', 'Calculo1', 'semestre1');
@@ -140,7 +140,7 @@ function crearPensumInformatica(usuario, carrera) {
     //NOVENO SEMESTRE
     write(usuario, carrera, NO_TOMADA, NO_TOMADA, 'Modalidad de Titulación', 'ModTitulacion', 'semestre9');
 }
-
+ */
 function crearFactory(type) {
     if(type == 'informatica') {
         pensumFactory = new PensumInformaticaFactory();

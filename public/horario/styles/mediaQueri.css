@@ -1,0 +1,29 @@
+@media (max-width : 800px) {
+    body{
+        /* background-image: url('./assets/horario-cel.jfif');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed; */
+        background-color: rgb(36, 71, 117);
+    }
+
+    .container-main{
+        position: absolute;
+        z-index: 50;
+        align-self: flex-start;
+        margin: 0px;
+        padding: 0px;
+        /* background-color: brown; */
+    }
+
+    .btn-editar{
+        margin: 0px;
+    }
+
+    .main{
+        position: relative;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

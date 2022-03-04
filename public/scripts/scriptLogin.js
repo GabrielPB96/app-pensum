@@ -1,61 +1,55 @@
+
+
 var MESES = ['January', 'February', 'March', 'April','May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
 
-var registrar, ingresar, registrarse;
+var registrar, ingresar, registrarse, avatar, srcAvatar = "default";
 var USER, PASSWORD, CARRERA, selectCarrera;
 
 function agregarUsuario(usuario, password) {
     var verifiA = false;
-    
-    for(let o of LIST_USERS) {
-        if(o.user == usuario) {
-            verifiA = true;
+    dataBase.child('z-usuarios').once('value').then(
+        (s) => {
+            let carreras = s.val();
+            for(let i in carreras) {
+                if(!verifiA) {
+                    dataBase.child('z-usuarios').child(i).once('value').then(
+                        (snap)=>{
+                            let u = snap.val();
+                            for(let j in u) {
+                                /* console.log(j, usuario) */
+                                if(j === usuario) {
+                                    verifiA = true;
+                                }
+                            }
+                            return verifiA;     
+                        }
+                    ).then(
+                        (v)=>{
+                            if(!v) {
+                                var new_salt = salt(10);
+                                var new_usuario = {
+                                    'user' : usuario,
+                                    'salt' : new_salt,
+                                    'hash' : hash(password + new_salt),
+                                    'signUpDate' : getTimeCurrent(),
+                                    'carrera' : selectCarrera,
+                                    'avatarPath' : srcAvatar
+                                }
+                        
+                                dataBase.child('z-usuarios').child(selectCarrera).child(usuario).update(new_usuario);
+                                /****************************************** */
+                                crearMalla(usuario, selectCarrera);
+                                alert("Registro Correcto");
+                                location.reload();
+                            }else{
+                                alert("El usuario ya existe");
+                            }
+                        }
+                    );
+                }
+            } 
         }
-    }
-    if(!verifiA) {
-        /* var date = new Date();
-
-        timeCurrent = MESES[date.getMonth()] +" "+ date.getDate() +" "+ date.getFullYear();
-        
-        var hrs;
-        if(date.getHours() < 10){
-            hrs = "0" + date.getHours();
-        }else{
-            hrs = date.getHours();
-        }
-
-        var minutes;
-        if(date.getMinutes() < 10){
-            minutes = "0" + date.getMinutes();
-        }else{
-            minutes = date.getMinutes();
-        }
-
-        var seconds;
-        if(date.getSeconds() < 10){
-            seconds = "0" + date.getSeconds();
-        }else{
-            seconds = date.getSeconds();
-        }
-
-        timeCurrent += " "+ hrs+":"+minutes+":"+seconds + (" GMT-0400"); 
- */
-        var new_salt = salt(10);
-        var new_usuario = {
-            'user' : usuario,
-            'salt' : new_salt,
-            'hash' : hash(password + new_salt),
-            'signUpDate' : getTimeCurrent(),
-            'carrera' : selectCarrera
-        }
-
-        dataBase.child('z-usuarios').child(selectCarrera).child(usuario).update(new_usuario);
-        /****************************************** */
-        crearMalla(usuario, selectCarrera);
-        alert("Registro Correcto");
-        location.reload();
-    }else{
-        alert("El usuario ya existe");
-    }
+    );
 }
 function getTimeCurrent() {
     var date = new Date();
@@ -161,6 +155,15 @@ function acceder(usuario, password){
         dataBase.child('z-usuarios').child(selectCarrera).child(usuario).update({
             'lastAccess' : getTimeCurrent()
         });
+        /* let avatarUser = dataBase.child('z-usuarios').child(selectCarrera).child(usuario)
+                            .once('value')
+                            .then(
+                                (s) =>{
+                                    let u = s.val();
+                                    return u.avatarPath;
+                                }
+                            );
+        localStorage.setItem('currentAvatar', avatarUser); */
         if(selectCarrera == 'informatica') {
             localStorage.setItem('carrera', 'informatica'); 
             window.location.href = "../pensumInformatica.html";
@@ -205,7 +208,12 @@ function controlCamposVacios() {
     }
 }
 
-function login() {
+function login(e) {
+    try {
+        e.preventDefault();
+    } catch (error) {
+        
+    }
     if(USER.value != "" && PASSWORD.value != "" && selectCarrera != "") {
         acceder(USER.value, PASSWORD.value);
     }else{
@@ -230,6 +238,7 @@ function registrarseF() {
     PASSWORD.value = "";
     ingresar.style.display= "none";
     registrar.style.display = "block";
+    document.getElementById('container-avatar').classList.toggle('show');
 }
 
 function pressKey() {
@@ -262,13 +271,31 @@ function init() {
     registrarse.addEventListener("click", registrarseF);
 
     ingresar = document.getElementById("botonIngresar");
-    ingresar.addEventListener("click", login);
-    ingresar.addEventListener('keydown', (e)=>{
-        console.log(e.keyCode);
-    });
+    ingresar.addEventListener("click", (event)=>{login(event)});
 
     registrar = document.getElementById("botonRegistrar");
     registrar.addEventListener("click", addUser);
+
+    avatar = document.getElementById('button-avatar');
+    avatar.addEventListener('click', ()=>{
+        document.getElementById('popup-avatar').classList.toggle('show');
+        if(!avatar.classList.toggle('cerrar')){
+            avatar.innerHTML = 'Elige un Avatar';
+        }else{
+            avatar.innerHTML = 'X';
+        }
+    });
+
+    initAvatar();
+}
+
+function initAvatar() {
+    for(let i=1; i<=9; i++) {
+        let img = document.getElementById('avt'+i);
+        img.addEventListener('click',()=>{
+            srcAvatar = img.src;
+        });
+    }
 }
 
 

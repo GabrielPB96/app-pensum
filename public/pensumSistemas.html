@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/stylesMenus.css">
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/./stylesPensum/styles.css">
+    <link rel="stylesheet" href="./styles/stylesPensum/stylesMenus.css">
+    <link rel="stylesheet" href="./styles/stylesPensum/screen1130.css" media="(max-width: 1130px)">
+    <link rel="stylesheet" href="./styles/stylesPensum/screen800.css" media="(max-width: 880px)">
+    <link rel="stylesheet" href="./styles/stylesPensum/screen550.css" media="(max-width: 550px)">
+    <link rel="stylesheet" href="./styles/stylesPensum/screenMenu750.css" media="(max-width: 770px)">
+    <link rel="stylesheet" href="./styles/stylesPensum/screenMenu550.css" media="(max-width: 550px)">
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
     <title>Ing en Sistemas</title>
 
@@ -45,6 +50,7 @@
         <h2>(Página en construcción)</h2>
         <nav>
             <a href="###" id="logout">Logout</a>
+            <input type="button" value="Horario" id="botonHorario">
         </nav>
         <div class="coloresEstados">
             <div class="container">
@@ -257,6 +263,45 @@
                     </div>
                 </div>
             </div>  
+
+            <div class="materia" id="IntroProgramacion">
+                <div class="numMateria"><p>5</p></div>
+                <div class="nombreMateriaEstado">
+                    <div class="menuEstados">
+                        <input type="checkbox" name="" id="btn-menuE5">
+                        <label for="btn-menuE5" class="label">
+                            <div class="hamburguesa">
+                                <div class="line1"></div>
+                                <div class="line2"></div>
+                                <div class="line3"></div>
+                            </div>
+                        </label>
+                        <nav class="menu menuE5">
+                            <ul>
+                                <li>
+                                    <label for="aprobadaIntroProgramacion">APROBADA</label>
+                                    <input type="radio" name="estadoIntroProgramacion" id="aprobadaIntroProgramacion" class="estadosRadio" value="aprobada">
+                                </li>
+
+                                <li>
+                                    <label for="cursandoIntroProgramacion">CURSANDO</label>
+                                    <input type="radio" name="estadoIntroProgramacion" id="cursandoIntroProgramacion" class="estadosRadio" value="cursando">
+                                </li>
+
+                                <li>
+                                    <label for="no_tomadaIntroProgramacion">NO TOMADA</label>
+                                    <input type="radio" name="estadoIntroProgramacion" id="no_tomadaIntroProgramacion" class="estadosRadio" value="no_tomada">
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="nombre">
+                        <p>Metodologia</p>
+                        <p>de la</p>
+                        <p>Investigación</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="semestre" id="semestre2">

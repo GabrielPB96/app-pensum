@@ -1014,33 +1014,3 @@
     animation-timing-function: linear;
 }
 /*************************************************************/
-
-@media (max-width: 750px) {
-    .menuEstados{
-        margin: 0 2px;
-        align-self: flex-start;
-    }
-
-    .hamburguesa div{
-        width: 10px;
-        height: 2px;
-        background-color: black;
-        margin: 1px;
-        border-radius: 3px;
-    }
-}
-
-@media (max-width: 550px) {
-    .menuEstados{
-        margin: 0 2px;
-        align-self: flex-start;
-    }
-
-    .hamburguesa div{
-        width: 10px;
-        height: 2px;
-        background-color: black;
-        margin: 1px;
-        border-radius: 3px;
-    }
-}

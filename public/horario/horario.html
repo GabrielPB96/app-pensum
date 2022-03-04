@@ -3,10 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="./styles/style.css">
+	<link rel="stylesheet" href="./styles/mediaQueri.css" media="(max-width : 800px)">
 	<link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+	<script src="./scripts/imprimir.js"></script>
 	<title>Horario</title>
-	
 	
 	<script>
 		var botonVolver;
@@ -24,6 +25,13 @@
 	</script>
 </head>
 <body>
+	<div class="loader-info show" id="loader-info">
+        <div>
+            <div class="loader1" id="loader1"></div>
+            <div class="loader2"></div>
+        </div>
+        <p>LOADING...</p>
+    </div>
 	<nav>
 		<input type="button" value="Volver" id="volverPensum">
 	</nav>
@@ -39,6 +47,11 @@
 			<div class="container-btn-guardar" id="container-btn-guardar">
 				Guardar
 			</div>
+
+			<button id="imprimir" class="btn-imprimir" disabled>
+				<img src="./assets/print-icon.png" alt="" srcset="" width="20px" height="20px">
+				Imprimir
+			</button>
 
 			<div class="container-loader" id="container-loader">
 				<div class="loader" id="loader">
@@ -274,217 +287,219 @@
 					<p>Arrastre aquí</p>
 				</div>
 			</div>
-			<table class="horario" id="horario">
-				<caption class="titulo-horario">HORARIO</caption>
-				<tr>
-					<th>Hora</th>
-					<th>Lunes</th>
-					<th>Martes</th>
-					<th>Miercoles</th>
-					<th>Jueves</th>
-					<th>Viernes</th>
-					<th>Sabado</th>
-				</tr>
-				<tr>
-					<td>06:45<br/>07:30</td>
-					<td id="0645-lunes"></td>
-					<td id="0645-martes"></td>
-					<td id="0645-miercoles"></td>
-					<td id="0645-jueves"></td>
-					<td id="0645-viernes"></td>
-					<td id="0645-sabado"></td>
-				</tr>
-	
-				<tr>
-					<td>07:30<br/>08:15</td>
-					<td id="0730-lunes"></td>
-					<td id="0730-martes"></td>
-					<td id="0730-miercoles"></td>
-					<td id="0730-jueves"></td>
-					<td id="0730-viernes"></td>
-					<td id="0730-sabado"></td>
-				</tr>
+			<div id="print-horario">
+				<table class="horario" id="horario">
+					<caption><h1 class="titulo-horario">HORARIO</h1></caption>
+					<tr>
+						<th>Hora</th>
+						<th>Lunes</th>
+						<th>Martes</th>
+						<th>Miercoles</th>
+						<th>Jueves</th>
+						<th>Viernes</th>
+						<th>Sabado</th>
+					</tr>
+					<tr>
+						<td>06:45<br/>07:30</td>
+						<td id="0645-lunes"></td>
+						<td id="0645-martes"></td>
+						<td id="0645-miercoles"></td>
+						<td id="0645-jueves"></td>
+						<td id="0645-viernes"></td>
+						<td id="0645-sabado"></td>
+					</tr>
+		
+					<tr>
+						<td>07:30<br/>08:15</td>
+						<td id="0730-lunes"></td>
+						<td id="0730-martes"></td>
+						<td id="0730-miercoles"></td>
+						<td id="0730-jueves"></td>
+						<td id="0730-viernes"></td>
+						<td id="0730-sabado"></td>
+					</tr>
 
-				<tr>
-					<td>08:15<br/>09:00</td>
-					<td id="0815-lunes"></td>
-					<td id="0815-martes"></td>
-					<td id="0815-miercoles"></td>
-					<td id="0815-jueves"></td>
-					<td id="0815-viernes"></td>
-					<td id="0815-sabado"></td>
-				</tr>
+					<tr>
+						<td>08:15<br/>09:00</td>
+						<td id="0815-lunes"></td>
+						<td id="0815-martes"></td>
+						<td id="0815-miercoles"></td>
+						<td id="0815-jueves"></td>
+						<td id="0815-viernes"></td>
+						<td id="0815-sabado"></td>
+					</tr>
 
-				<tr>
-					<td>09:00<br/>09:45</td>
-					<td id="0900-lunes"></td>
-					<td id="0900-martes"></td>
-					<td id="0900-miercoles"></td>
-					<td id="0900-jueves"></td>
-					<td id="0900-viernes"></td>
-					<td id="0900-sabado"></td>
-				</tr>
+					<tr>
+						<td>09:00<br/>09:45</td>
+						<td id="0900-lunes"></td>
+						<td id="0900-martes"></td>
+						<td id="0900-miercoles"></td>
+						<td id="0900-jueves"></td>
+						<td id="0900-viernes"></td>
+						<td id="0900-sabado"></td>
+					</tr>
 
-				<tr>
-					<td>09:45<br/>10:30</td>
-					<td id="0945-lunes"></td>
-					<td id="0945-martes"></td>
-					<td id="0945-miercoles"></td>
-					<td id="0945-jueves"></td>
-					<td id="0945-viernes"></td>
-					<td id="0945-sabado"></td>
-				</tr>
+					<tr>
+						<td>09:45<br/>10:30</td>
+						<td id="0945-lunes"></td>
+						<td id="0945-martes"></td>
+						<td id="0945-miercoles"></td>
+						<td id="0945-jueves"></td>
+						<td id="0945-viernes"></td>
+						<td id="0945-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1030">10:30<br/>11:15</td>
-					<td id="1030-lunes"></td>
-					<td id="1030-martes"></td>
-					<td id="1030-miercoles"></td>
-					<td id="1030-jueves"></td>
-					<td id="1030-viernes"></td>
-					<td id="1030-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1030">10:30<br/>11:15</td>
+						<td id="1030-lunes"></td>
+						<td id="1030-martes"></td>
+						<td id="1030-miercoles"></td>
+						<td id="1030-jueves"></td>
+						<td id="1030-viernes"></td>
+						<td id="1030-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1115">11:15<br/>12:00</td>
-					<td id="1115-lunes"></td>
-					<td id="1115-martes"></td>
-					<td id="1115-miercoles"></td>
-					<td id="1115-jueves"></td>
-					<td id="1115-viernes"></td>
-					<td id="1115-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1115">11:15<br/>12:00</td>
+						<td id="1115-lunes"></td>
+						<td id="1115-martes"></td>
+						<td id="1115-miercoles"></td>
+						<td id="1115-jueves"></td>
+						<td id="1115-viernes"></td>
+						<td id="1115-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1200">12:00<br/>12:45</td>
-					<td id="1200-lunes"></td>
-					<td id="1200-martes"></td>
-					<td id="1200-miercoles"></td>
-					<td id="1200-jueves"></td>
-					<td id="1200-viernes"></td>
-					<td id="1200-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1200">12:00<br/>12:45</td>
+						<td id="1200-lunes"></td>
+						<td id="1200-martes"></td>
+						<td id="1200-miercoles"></td>
+						<td id="1200-jueves"></td>
+						<td id="1200-viernes"></td>
+						<td id="1200-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1245">12:45<br/>13:30</td>
-					<td id="1245-lunes"></td>
-					<td id="1245-martes"></td>
-					<td id="1245-miercoles"></td>
-					<td id="1245-jueves"></td>
-					<td id="1245-viernes"></td>
-					<td id="1245-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1245">12:45<br/>13:30</td>
+						<td id="1245-lunes"></td>
+						<td id="1245-martes"></td>
+						<td id="1245-miercoles"></td>
+						<td id="1245-jueves"></td>
+						<td id="1245-viernes"></td>
+						<td id="1245-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1330">13:30<br/>14:15</td>
-					<td id="1330-lunes"></td>
-					<td id="1330-martes"></td>
-					<td id="1330-miercoles"></td>
-					<td id="1330-jueves"></td>
-					<td id="1330-viernes"></td>
-					<td id="1330-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1330">13:30<br/>14:15</td>
+						<td id="1330-lunes"></td>
+						<td id="1330-martes"></td>
+						<td id="1330-miercoles"></td>
+						<td id="1330-jueves"></td>
+						<td id="1330-viernes"></td>
+						<td id="1330-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1415">14:15<br/>15:00</td>
-					<td id="1415-lunes"></td>
-					<td id="1415-martes"></td>
-					<td id="1415-miercoles"></td>
-					<td id="1415-jueves"></td>
-					<td id="1415-viernes"></td>
-					<td id="1415-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1415">14:15<br/>15:00</td>
+						<td id="1415-lunes"></td>
+						<td id="1415-martes"></td>
+						<td id="1415-miercoles"></td>
+						<td id="1415-jueves"></td>
+						<td id="1415-viernes"></td>
+						<td id="1415-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1500">15:00<br/>15:45</td>
-					<td id="1500-lunes"></td>
-					<td id="1500-martes"></td>
-					<td id="1500-miercoles"></td>
-					<td id="1500-jueves"></td>
-					<td id="1500-viernes"></td>
-					<td id="1500-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1500">15:00<br/>15:45</td>
+						<td id="1500-lunes"></td>
+						<td id="1500-martes"></td>
+						<td id="1500-miercoles"></td>
+						<td id="1500-jueves"></td>
+						<td id="1500-viernes"></td>
+						<td id="1500-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1545">15:45<br/>16:30</td>
-					<td id="1545-lunes"></td>
-					<td id="1545-martes"></td>
-					<td id="1545-miercoles"></td>
-					<td id="1545-jueves"></td>
-					<td id="1545-viernes"></td>
-					<td id="1545-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1545">15:45<br/>16:30</td>
+						<td id="1545-lunes"></td>
+						<td id="1545-martes"></td>
+						<td id="1545-miercoles"></td>
+						<td id="1545-jueves"></td>
+						<td id="1545-viernes"></td>
+						<td id="1545-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1630">16:30<br/>17:15</td>
-					<td id="1630-lunes"></td>
-					<td id="1630-martes"></td>
-					<td id="1630-miercoles"></td>
-					<td id="1630-jueves"></td>
-					<td id="1630-viernes"></td>
-					<td id="1630-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1630">16:30<br/>17:15</td>
+						<td id="1630-lunes"></td>
+						<td id="1630-martes"></td>
+						<td id="1630-miercoles"></td>
+						<td id="1630-jueves"></td>
+						<td id="1630-viernes"></td>
+						<td id="1630-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1715">17:15<br/>18:00</td>
-					<td id="1715-lunes"></td>
-					<td id="1715-martes"></td>
-					<td id="1715-miercoles"></td>
-					<td id="1715-jueves"></td>
-					<td id="1715-viernes"></td>
-					<td id="1715-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1715">17:15<br/>18:00</td>
+						<td id="1715-lunes"></td>
+						<td id="1715-martes"></td>
+						<td id="1715-miercoles"></td>
+						<td id="1715-jueves"></td>
+						<td id="1715-viernes"></td>
+						<td id="1715-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1800">18:00<br/>18:45</td>
-					<td id="1800-lunes"></td>
-					<td id="1800-martes"></td>
-					<td id="1800-miercoles"></td>
-					<td id="1800-jueves"></td>
-					<td id="1800-viernes"></td>
-					<td id="1800-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1800">18:00<br/>18:45</td>
+						<td id="1800-lunes"></td>
+						<td id="1800-martes"></td>
+						<td id="1800-miercoles"></td>
+						<td id="1800-jueves"></td>
+						<td id="1800-viernes"></td>
+						<td id="1800-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1845">18:45<br/>19:30</td>
-					<td id="1845-lunes"></td>
-					<td id="1845-martes"></td>
-					<td id="1845-miercoles"></td>
-					<td id="1845-jueves"></td>
-					<td id="1845-viernes"></td>
-					<td id="1845-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1845">18:45<br/>19:30</td>
+						<td id="1845-lunes"></td>
+						<td id="1845-martes"></td>
+						<td id="1845-miercoles"></td>
+						<td id="1845-jueves"></td>
+						<td id="1845-viernes"></td>
+						<td id="1845-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="1930">19:30<br/>20:15</td>
-					<td id="1930-lunes"></td>
-					<td id="1930-martes"></td>
-					<td id="1930-miercoles"></td>
-					<td id="1930-jueves"></td>
-					<td id="1930-viernes"></td>
-					<td id="1930-sabado"></td>
-				</tr>
+					<tr>
+						<td id="1930">19:30<br/>20:15</td>
+						<td id="1930-lunes"></td>
+						<td id="1930-martes"></td>
+						<td id="1930-miercoles"></td>
+						<td id="1930-jueves"></td>
+						<td id="1930-viernes"></td>
+						<td id="1930-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="2015">20:15<br/>21:00</td>
-					<td id="2015-lunes"></td>
-					<td id="2015-martes"></td>
-					<td id="2015-miercoles"></td>
-					<td id="2015-jueves"></td>
-					<td id="2015-viernes"></td>
-					<td id="2015-sabado"></td>
-				</tr>
+					<tr>
+						<td id="2015">20:15<br/>21:00</td>
+						<td id="2015-lunes"></td>
+						<td id="2015-martes"></td>
+						<td id="2015-miercoles"></td>
+						<td id="2015-jueves"></td>
+						<td id="2015-viernes"></td>
+						<td id="2015-sabado"></td>
+					</tr>
 
-				<tr>
-					<td id="2100">21:00</td>
-					<td id="2100-lunes"></td>
-					<td id="2100-martes"></td>
-					<td id="2100-miercoles"></td>
-					<td id="2100-jueves"></td>
-					<td id="2100-viernes"></td>
-					<td id="2100-sabado"></td>
-				</tr>
-			</table>
+					<tr>
+						<td id="2100">21:00</td>
+						<td id="2100-lunes"></td>
+						<td id="2100-martes"></td>
+						<td id="2100-miercoles"></td>
+						<td id="2100-jueves"></td>
+						<td id="2100-viernes"></td>
+						<td id="2100-sabado"></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</main>
 	<script src="./scripts/popup.js"></script>

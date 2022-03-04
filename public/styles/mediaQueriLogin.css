@@ -1,0 +1,50 @@
+@media (max-width: 550px) {
+    /*.botones{
+        flex-direction: column;
+    }*/
+
+    body{
+        background-image: url('../assets/celFondo3.jfif');
+    }
+
+    .passwordEye{
+        width: 90%;
+    }
+
+    #usuario{
+        width: 90%;
+    }
+
+    .ingresar{
+        order: 2;
+        width: 90%;
+    }
+
+    .registrarse{
+        order: 3;
+    }
+
+    .registrar{
+        order: 1;
+        width: 90%;
+    }
+
+    .login{
+        width: 70%;
+        min-width: 300px;
+    }
+
+    .user::placeholder{
+        background-position: 3rem center;
+    }
+    .password::placeholder{
+        background-position: 2.5rem center;
+    }
+
+    .carreras{
+        margin-left: 5px;
+    }
+    .carrera{
+        margin-right: 0px;
+    }
+}

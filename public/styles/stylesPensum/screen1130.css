@@ -1,0 +1,103 @@
+@media (max-width: 1130px) {
+    .main{
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        row-gap: 20px;
+        column-gap: 5px;
+        justify-content: center;
+        padding: 0;
+        margin: auto;
+        width: 100%;
+        align-content: center;
+    }
+
+    .main .semestre{
+        height: auto;
+        flex-direction: column;
+        background-color: coral;
+        border-radius: 10px;
+    }
+
+    .nombreMateriaEstado{
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .menuEstados{
+        margin: 0px 5px;
+        align-self: flex-start;
+    }
+
+    .nombre p{
+        font-size: 13px;
+    }
+
+    .main .semestre .materia{
+        width: 80%;
+        height: 130px;
+    }
+
+    .nombre p{
+        font-size: 15px;
+        margin: 0px 0px;
+    }
+
+    .hamburguesa div{
+        width: 10px;
+        height: 2px;
+        background-color: black;
+        margin: 1px;
+        border-radius: 3px;
+    }
+
+    .estados label{
+        font-size: 10px;
+    }
+    
+    .estados .estadosRadio{
+        transform: scale(.4);
+    }
+
+    #semestre1{
+        background-color: rgba(8, 99, 177,.3);
+    }
+
+    #semestre2{
+        background-color: rgba(22, 116, 114,.3);
+    }
+
+    #semestre3{
+        background-color: rgba(43, 199, 199, .3);
+    }
+
+    #semestre4{
+        background-color: rgba(61, 199, 156,.3);
+    }
+
+    #semestre5{
+        background-color: rgba(167, 213, 40,.3);
+    }
+
+    #semestre6{
+        background-color: rgba(73, 127, 25,.3);
+    }
+
+    #semestre7{
+        background-color: rgba(68, 78, 20,.3);
+    }
+
+    #semestre8{
+        background-color: rgba(196, 54, 59,.3);
+    }
+
+    #semestre9{
+        background-color: rgba(232, 124, 40,.3);
+    }
+
+    .main .semestre .title{
+        width: 90%;
+    }
+
+
+}

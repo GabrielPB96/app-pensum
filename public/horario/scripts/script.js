@@ -24,6 +24,8 @@ var mobile;
 
 var mapCellsDeletes = new Map();
 
+var newMateria;
+
 function addPila(id_element) {
     if (pilaEdicion.length < 3) {
         pilaEdicion.push(id_element);
@@ -64,14 +66,9 @@ function habilitarCeldasBorradas(cellsHabilitar) {
     }
 }
 
-function actualizar(value, d, limiteA, limiteB, step) {
+function actualizarHora(value, d, limiteA, limiteB, step) {
     let valor = value.innerHTML;
     let valorAnt;
-    /* if (valor == '00') {
-        valor = 0;
-    } else {
-        valor = parseInt(valor);
-    } */
 
     valor = parseInt(valor);
 
@@ -96,7 +93,7 @@ function actualizar(value, d, limiteA, limiteB, step) {
 
 function addEvent(nodo, value, d, limitA, limitB, step) {
     nodo.addEventListener('click', () => {
-        actualizar(value, d, limitA, limitB, step);
+        actualizarHora(value, d, limitA, limitB, step);
         activarGenerador();
         nodo.classList.add('click');
         nodo.childNodes[1].classList.add('click');
@@ -248,24 +245,21 @@ function addEventHora() {
     /*****************************************************/
 }
 
-function init() {
-    readHorario();
-    if(isMobile()) {
-        mobile = true;
-    }else {
-        mobile = false;
+function addEventSemestres() {
+    for (let i = 1; i <= 9; i++) {
+        let obj = document.getElementById('span' + i);
+        let parentObj = obj.parentNode;
+        obj.addEventListener('click', () => {
+            if (parentObj.childNodes[3].classList.contains('show')) {
+                parentObj.childNodes[3].classList.remove('show')
+            } else {
+                parentObj.childNodes[3].classList.add('show');
+            }
+        });
     }
+}
 
-    initNodos();
-
-    addEven1();
-
-    addEventHora();
-
-    addEventNameMaterias();
-
-    /* boton_back.addEventListener('click', volverPaso); */
-
+function addEventButtons() {
     botonMaterias.addEventListener('click', () => {
         botonMaterias.classList.add('click');
         setTimeout(() => {
@@ -286,18 +280,6 @@ function init() {
             botonMaterias.classList.remove('borders');
         }
     });
-
-    for (let i = 1; i <= 9; i++) {
-        let obj = document.getElementById('span' + i);
-        let parentObj = obj.parentNode;
-        obj.addEventListener('click', () => {
-            if (parentObj.childNodes[3].classList.contains('show')) {
-                parentObj.childNodes[3].classList.remove('show')
-            } else {
-                parentObj.childNodes[3].classList.add('show');
-            }
-        });
-    }
 
     boton_editar.addEventListener('click', () => {
         /* boton_editar.classList.add('hidden'); */
@@ -328,10 +310,7 @@ function init() {
     boton_generar.addEventListener('click', crearMateria);
 
     newMateria.addEventListener('dragstart', (e) => {
-        /* if (e.cancelable) {
-            e.preventDefault();
-        } */
-        /*  popup.classList.add('show'); */
+            /* e.preventDefault(); */
     });
 
     newMateria.addEventListener('dragend', (e) => {
@@ -358,40 +337,36 @@ function init() {
         if (e.cancelable) {
             e.preventDefault();
         }
-        
-        /* if(pilaEdicion.length == 0) {
-            boton_back.disabled = false;
-        } */
-
         agregarMateria();
     });
 
     colorMateria.addEventListener('input', activarGenerador);
 
     boton_agregar.addEventListener('click', ()=>{
-        /* if(pilaEdicion.length == 0) {
-            boton_back.disabled = false;
-        } */
         agregarMateria();
         boton_agregar.classList.remove('show');
     });
 
-    if(mobile) {
-        containerMinInit.childNodes[3].classList.add('focus');
-        containerMinInit2.childNodes[3].classList.add('focus');
-        containerMinFin.childNodes[3].classList.add('focus');
-        containerMinFin2.childNodes[3].classList.add('focus');
-        document.getElementById('hora-init-celu').classList.add('show');
-        document.getElementById('hora-init-celu').addEventListener('change', activarGenerador);
-        document.getElementById('hora-fin-celu').classList.add('show');
-        document.getElementById('hora-fin-celu').addEventListener('change', activarGenerador);
-        document.getElementById('hora-de').classList.add('hidden');
-        document.getElementById('hora-hasta').classList.add('hidden');
-    }
-
     container_btn_guardar.addEventListener('click', () =>{
         guardarEstadoHorario();
     });
+
+    document.getElementById('imprimir').addEventListener('click', ()=>{
+        printDocument(document.getElementById('print-horario'));
+    });
+}
+
+function configMobile() {
+    containerMinInit.childNodes[3].classList.add('focus');
+    containerMinInit2.childNodes[3].classList.add('focus');
+    containerMinFin.childNodes[3].classList.add('focus');
+    containerMinFin2.childNodes[3].classList.add('focus');
+    document.getElementById('hora-init-celu').classList.add('show');
+    document.getElementById('hora-init-celu').addEventListener('change', activarGenerador);
+    document.getElementById('hora-fin-celu').classList.add('show');
+    document.getElementById('hora-fin-celu').addEventListener('change', activarGenerador);
+    document.getElementById('hora-de').classList.add('hidden');
+    document.getElementById('hora-hasta').classList.add('hidden');
 }
 
 function isMobile() {
@@ -407,11 +382,9 @@ function isMobile() {
 
 function guardarEstadoHorario() {
     document.getElementById('loader').classList.toggle('show-loader');
-    /* console.log(materiasCreadas); */
     HORARIO = []
     let USUARIO = localStorage.getItem('usuario');
     let CARRERA =   localStorage.getItem('carrera');
-    /*  */console.log(USUARIO);
     console.log(CARRERA);
     let filas = Array.from(horario.children[1].children);
     filas.shift();
@@ -475,6 +448,7 @@ function readHorario() {
                     cel.rowSpan = i.rowSpan;
                     cel.style.position = 'relative';
                 }
+                document.getElementById('loader-info').classList.toggle('show');
             }catch(e){
                 console.log('not found');
             }
@@ -482,8 +456,32 @@ function readHorario() {
     )
 }
 
-var newMateria;
 
+function init() {
+    readHorario();
+
+    if(isMobile()) {
+        mobile = true;
+    }else {
+        mobile = false;
+    }
+
+    initNodos();
+
+    addEven1();
+
+    addEventHora();
+
+    addEventNameMaterias();
+
+    addEventSemestres();
+
+    addEventButtons();
+    
+    if(mobile) {
+        configMobile();
+    }
+}
 
 
 window.addEventListener('load', init);

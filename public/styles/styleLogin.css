@@ -221,54 +221,65 @@ label{
 .carrera{
     color: #fff;
 }
+.container-avatar{
+    display: none;
+}
+.container-avatar.show{
+    width: 80%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 
-@media (max-width: 550px) {
-    /*.botones{
-        flex-direction: column;
-    }*/
+.button-avatar.cerrar{
+    width: 15%;    
+}
+.button-avatar{
+    background-color: #346dd6;
+    width: 40%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .1s ease;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.button-avatar:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 5px 2px black;
+}
 
-    body{
-        background-image: url('../assets/celFondo3.jfif');
-    }
+.popup-avatar{
+    display: none;
+}
 
-    .passwordEye{
-        width: 90%;
-    }
+.popup-avatar.show{
+    width: 90%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    background-color: #346dd6;
+    border-radius: 20px;
+    border: 2px solid black;
+    position: absolute;
+    top: 30px;
+}
 
-    #usuario{
-        width: 90%;
-    }
+.popup-avatar img{
+    width: 70px;
+    height: 70px;
+    background-color: rgb(43, 189, 226);
+    padding: 0;
+    margin: 5px;
+    border-radius: 50%;
+    transition: transform .2s ease;
+    cursor: pointer;
+}
 
-    .ingresar{
-        order: 2;
-        width: 90%;
-    }
-
-    .registrarse{
-        order: 3;
-    }
-
-    .registrar{
-        order: 1;
-        width: 90%;
-    }
-
-    .login{
-        width: 70%;
-        min-width: 300px;
-    }
-
-    .user::placeholder{
-        background-position: 3rem center;
-    }
-    .password::placeholder{
-        background-position: 2.5rem center;
-    }
-
-    .carreras{
-        margin-left: 5px;
-    }
-    .carrera{
-        margin-right: 0px;
-    }
+.popup-avatar img:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 5px 2px black;
 }
