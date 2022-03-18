@@ -7,9 +7,18 @@
         background-attachment: fixed;
     }
 
+    .avatar-elige{
+        /* right: 60px; */
+        background-color: azure;
+    }
+
     .header h1{
         color: #fafafa;
         box-shadow: 2px 2px rgb(224, 216, 216);
+    }
+
+    .avatar p{
+        color:white;
     }
 
     .main .semestre .title{

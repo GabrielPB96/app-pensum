@@ -7,6 +7,13 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+nav{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 800px;
+}
 nav input{
     border: none;
     padding: 10px;
@@ -19,6 +26,32 @@ nav input{
 }
 nav input:hover{
     transform: scale(1.05);
+}
+
+.avatar{
+    position: absolute;
+    background-color: rgb(119, 219, 181);
+    width: 61px;
+    height: 61px;
+    right: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+   /*  display: none; */
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px
+}
+.avatar img{
+    /*width: 90px;
+    height: 90px;*/
+}
+
+.avatar p{
+    position: absolute;
+    font-weight: bold;
+    top: 45px;
+    color: white;
 }
 
 .titulo-horario{

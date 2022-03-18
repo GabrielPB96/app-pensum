@@ -8,6 +8,37 @@ body{
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
+    font-family: sans-serif;
+}
+
+.avatar-registro{
+    display: none;
+}
+
+.avatar-registro.desvanecer{
+    animation: desvanecer 2s linear;
+}
+
+@keyframes desvanecer {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.avatar-registro.show{
+    background-color: rgb(119, 219, 181);
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+   /*  display: none; */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .login{
@@ -32,19 +63,68 @@ body{
     /*border: 1px solid #fff;*/
 }
 
+.placeholderUser{
+    pointer-events: none;
+    position: absolute;
+    top: 10px;
+    left: 70px;
+    background-color: #f1f7fe;
+    padding: 0 5px;
+    border-radius: 5px;
+    color: rgba(5, 42, 78, 0.4);
+    transition-property: top, left, color, font-size;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    font-weight: bold;
+    border: 2px solid transparent;
+    font-size: 1rem;
+}
+.user:focus + .placeholderUser,
+.user:not(:placeholder-shown) + .placeholderUser{
+    top: -7px;
+    left: 70px;
+    color: royalblue;
+    font-size: .9rem;
+}
+
+.placeholderPassword{
+    position: absolute;
+    pointer-events: none;
+    background-color: #f1f7fe;
+    color: rgba(5, 42, 78, 0.4);
+    top: -10px;
+    left: 10px;
+    padding: 0 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition-property: top, left, color;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    font-weight: bold;
+}
+.password:focus ~ .placeholderPassword,
+.password:not(:placeholder-shown) ~ .placeholderPassword{
+    top: -25px;
+    left: 10px;
+    color: royalblue;
+    font-size: .9rem;
+}
+
 .camposLogin{
+    position: relative;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     width: 100%;
     /*height: 150px;*/
-    padding: 10px;
+    padding: 20px 10px;
     justify-content: center;
     align-items: center;
-    background-color: rgba(48, 53, 63, 0.3);
+    /*background-color: rgba(48, 53, 63, 0.3);*/
     box-sizing: border-box;
     border-radius: 5px;
     border: 1px solid #fff;
+    background-color: #f1f7fe;
 }
 
 .botones{
@@ -68,6 +148,9 @@ body{
     box-sizing: none;
     color: #fff;
 }
+.no-account.hidden{
+    display: none;
+}
 
 label{
     margin-right: 10px;
@@ -90,7 +173,8 @@ label{
     transition: .3s ease .0s;
 }
 
-.ingresar, .registrar{
+.ingresar,
+.registrar{
     width: 90%;
     cursor: pointer;
     letter-spacing: 3px;
@@ -102,9 +186,20 @@ label{
     margin: 5px;
     font-family: 'Times New Roman', Times, serif;
     color: #fff;
+    outline: none;
 }
 
-.ingresar:hover, .registrar:hover, .registrarse:hover, .forgotPassword:hover{
+.ingresar.hidden{
+    display: none;
+}
+.registrar.show{
+    display: block;
+}
+
+.ingresar:hover,
+.registrar:hover,
+.registrarse:hover,
+.forgotPassword:hover{
     transform: scale(1.1);
 }
 
@@ -131,52 +226,77 @@ label{
     width: 100%;
     height: 30px;
     margin: 0px;
-    text-align: center;
+    padding-left: 1rem;
     border-radius: 7px;
     border: none;
 }
 
-#usuario{
+.user{
     width: 70%;
     height: 30px;
     margin-bottom: 15px;
-    text-align: center;
+    text-align: left;
+    padding-left: 1rem;
     border-radius: 7px;
-    border: none;
+    border: 2px solid rgba(5, 42, 78, 0.2);
+    color: #052a4e;
+    background-color: #f1f7fe;
 }
 
 #password:focus{
     outline: none;
 }
+#password:focus::placeholder{
+    background-image: url('');
+}
 
-#usuario:focus{
+.user:focus{
     outline: none;
+    border: 2px solid royalblue;
+}
+.user:focus::placeholder{
+    background-image: url('');
 }
 
 .password::placeholder{
     background-image: url("../assets/password.svg");
     background-size: 15px 15px;
     background-repeat: no-repeat;
-    background-position: 3.5rem center;
+    background-position: 14rem center;
 }
 
 .user::placeholder{
     background-image: url("../assets/user.svg");
     background-size: 15px 15px;
     background-repeat: no-repeat;
-    background-position: 4rem center;
+    background-position: 14rem center;
 }
 
-#spanUser, #spanPassword{
+
+.user.incorrecto,
+.passwordEye.incorrecto{
+    border: 1px solid red;
+    margin:0;
+}
+
+
+#spanUser,
+#spanPassword{
     margin-bottom: 5px;
     font-size: 13px;
     justify-self: flex-start;
     display: none;
     color: rgb(156, 4, 4);
 }
+#spanUser.show,
+#spanPassword.show{
+    display: block;
+}
 
 .password{
     margin: 0px;
+    color: #052a4e;
+    background-color: #f1f7fe;
 }
 
 .showEye{
@@ -192,15 +312,26 @@ label{
     cursor: pointer;
     transform: scale(1.5);
 }
+.spanEyeShow{
+    display: none;
+}
+.spanEyeShow.show{
+    display: inline;
+}
 
 .passwordEye{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
     height: 33px;
-    width: 70%;
+    width: 75%;
     border-radius: 7px;
+    border: 2px solid rgba(5, 42, 78, 0.2);
+}
+.passwordEye.focus{
+    border: 2px solid royalblue;
 }
 
 .carreras{
@@ -219,7 +350,7 @@ label{
 }
 
 .carrera{
-    color: #fff;
+    color: black;
 }
 .container-avatar{
     display: none;
@@ -277,6 +408,22 @@ label{
     border-radius: 50%;
     transition: transform .2s ease;
     cursor: pointer;
+}
+#avt10 {
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+}
+.popup-avatar img:active{
+    animation: clickImg 1s linear;
+}
+@keyframes clickImg{
+    from {
+        box-shadow: 0 0 5px 5px green;
+    }
+    to{
+        box-shadow: 0 0 10px 10px green;
+    }
 }
 
 .popup-avatar img:hover{

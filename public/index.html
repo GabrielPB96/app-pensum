@@ -31,15 +31,20 @@
 <body>
     <main class="main">
         <div class="login">
-            <form action="" class="formulario" onsubmit="return addUser">
+            <form action="" class="formulario">
+                <div class="avatar-registro" id="avatar-registro">
+                    <img src="./assets/user-default.png" alt="" id="signin-avatar" width='50px' height="50px">
+                </div>
                 <div class="camposLogin">
-                    <input class="user" type="text" name="" id="usuario" autocomplete="off" placeholder="User" autofocus>
-                    <span id="spanUser">User cannot be empty.</span> 
+                    <input class="user" type="text" name="" id="usuario" autocomplete="off" placeholder=" ">
+                    <p class="placeholderUser">User</p>
+                    <span id="spanUser">User cannot be empty.</span>
                     <div class="passwordEye" id="passwordEye">
-                        <input class="password" type="password" name="" id="password" autocomplete="off" placeholder="           Password">
-                        <span class="spanEyeShow">
+                        <input class="password" type="password" name="" id="password" autocomplete="off" placeholder=" ">
+                        <span class="spanEyeShow" id="spanEyeShow">
                             <img src="./assets/show.svg" alt="" srcset="" class="showEye" id="imgEye">
                         </span>
+                        <p class="placeholderPassword">Password</p>
                     </div>
                     <span id="spanPassword">Password cannot be empty.</span>
                     <div class="containerCarreras">
@@ -69,11 +74,12 @@
                             <img src="./assets/avatar/avtM3.png" alt="" id="avt7">
                             <img src="./assets/avatar/avtM4.png" alt="" id="avt8">
                             <img src="./assets/avatar/avtM5.png" alt="" id="avt9">
+                            <img src="./assets/user-default.png" alt="" id="avt10">
                         </div>
                     </div>
                 </div>
 
-                <div class="no-account">
+                <div class="no-account" id="no-account">
                     <p>Don't have an account?</p>
                     <span class="registrarse" id="botonRegistrarse">Sign in</span>
                 </div>

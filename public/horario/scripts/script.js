@@ -307,6 +307,10 @@ function addEventButtons() {
         container_btn_guardar.classList.toggle('hidden');
     });
 
+    container_btn_guardar.addEventListener('click', () =>{
+        guardarEstadoHorario();
+    });
+
     boton_generar.addEventListener('click', crearMateria);
 
     newMateria.addEventListener('dragstart', (e) => {
@@ -345,10 +349,6 @@ function addEventButtons() {
     boton_agregar.addEventListener('click', ()=>{
         agregarMateria();
         boton_agregar.classList.remove('show');
-    });
-
-    container_btn_guardar.addEventListener('click', () =>{
-        guardarEstadoHorario();
     });
 
     document.getElementById('imprimir').addEventListener('click', ()=>{
@@ -417,6 +417,11 @@ function guardarEstadoHorario() {
     dataBase.child('z-usuarios').child(CARRERA).child(USUARIO).update({
         'Horario' : HORARIO
     });
+
+    if(document.getElementById('loader-info').classList.contains('show')) {
+        document.getElementById('loader-info').classList.toggle('show');
+    }
+
     setTimeout(()=>{
         document.getElementById('loader').classList.toggle('show-loader');
         document.getElementById('text-loader-guardar').classList.toggle('show');
@@ -448,17 +453,45 @@ function readHorario() {
                     cel.rowSpan = i.rowSpan;
                     cel.style.position = 'relative';
                 }
-                document.getElementById('loader-info').classList.toggle('show');
             }catch(e){
                 console.log('not found');
+            }finally{
+                document.getElementById('loader-info').classList.toggle('show');
             }
         }
     )
 }
 
+function capitalize(str){
+    let sub = str.substr(1, str.length);
+    return str[0].toUpperCase() + sub.toLowerCase();
+}
+function cargarAvatar(usuario, carrera) {
+    let imgAvt = document.getElementById('avatar-user'),
+    nameUser = document.getElementById('name-user');
+    
+    dataBase.child('z-usuarios').child(carrera).child(usuario).once('value')
+    .then(
+        (s)=>{
+            let u = s.val();
+            let ruta = '.'+u.avatarPath;
+            nameUser.innerHTML = capitalize(usuario);
+            if(!ruta.includes('default')) {
+                imgAvt.src = ruta;
+                imgAvt.style.width = '90px';
+                imgAvt.style.height = '90px';
+            }else{
+                imgAvt.style.width = '53px';
+                imgAvt.style.height = '53px';
+            }
+        }
+    );
+}
+
 
 function init() {
     readHorario();
+    cargarAvatar(localStorage.getItem('usuario'),localStorage.getItem('carrera'));
 
     if(isMobile()) {
         mobile = true;

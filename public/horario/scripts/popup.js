@@ -50,6 +50,7 @@ function crearBotonDelete(parent) {
 		celda.rowSpan = 1;
 		celda.style.backgroundColor = 'transparent';
 	});
+
 	return botonDelete;
 }
 
@@ -170,15 +171,21 @@ function createPopupReadHorario(celda, color) {
 	});
 
 	celda.childNodes[1].childNodes[2].addEventListener('click', () => {
-		if (materiasCreadas.get(celda.id) != undefined) {
+		if (materiasCreadas.get(celda.id) !== undefined) {
+			console.log('materiasCreadas')
 			let objts = materiasCreadas.get(celda.id);
 			for (let i of objts) {
 				document.getElementById(i).classList.remove('hidden');
 			}
 			materiasCreadas.delete(celda.id);
-		} else if (materiasLeidas.get(celda.id) != undefined) {
+		} else if (materiasLeidas.get(celda.id) !== undefined) {
+			console.log('materiasLeidas')
 			let objts = materiasLeidas.get(celda.id);
+			console.log(materiasLeidas)
+			console.log(celda.id)
+			console.log(objts)
 			for (let i of objts) {
+				console.log('wii')
 				document.getElementById(i).classList.remove('hidden');
 			}
 			materiasLeidas.delete(celda.id);

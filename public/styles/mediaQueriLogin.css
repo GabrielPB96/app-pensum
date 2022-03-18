@@ -7,8 +7,24 @@
         background-image: url('../assets/celFondo3.jfif');
     }
 
+    .placeholderUser{
+        left: 20px;
+    }
+
+    .user:focus + .placeholderUser,
+    .user:not(:placeholder-shown) + .placeholderUser{
+        top: -10px;
+        left: 20px;
+        color: royalblue;
+    }
+
+    .popup-avatar img{
+        width: 55px;
+        height: 55px;
+    }
+
     .passwordEye{
-        width: 90%;
+        width: 95%;
     }
 
     #usuario{
@@ -35,10 +51,10 @@
     }
 
     .user::placeholder{
-        background-position: 3rem center;
+        background-position: 13rem center;
     }
     .password::placeholder{
-        background-position: 2.5rem center;
+        background-position: 13rem center;
     }
 
     .carreras{
@@ -46,5 +62,9 @@
     }
     .carrera{
         margin-right: 0px;
+    }
+
+    .placeholderPassword{
+        left: 7px;
     }
 }

@@ -1,5 +1,4 @@
 
-
 var MESES = ['January', 'February', 'March', 'April','May', 'June', 'July', 'August','September', 'October', 'November', 'December'];
 
 var registrar, ingresar, registrarse, avatar, srcAvatar = "default";
@@ -16,7 +15,6 @@ function agregarUsuario(usuario, password) {
                         (snap)=>{
                             let u = snap.val();
                             for(let j in u) {
-                                /* console.log(j, usuario) */
                                 if(j === usuario) {
                                     verifiA = true;
                                 }
@@ -112,15 +110,14 @@ function addUser() {
             }
         }else{
             if(!VU) {
-                USER.style.border = "1px solid red";
-                USER.style.margin = "0px";
+                USER.classList.toggle('incorrecto');
                 document.getElementById("spanUser").innerHTML = "Remove the spaces";
-                document.getElementById("spanUser").style.display = "block";
+                document.getElementById("spanUser").classList.toggle('show');
             }
             if(!VP) {
-                document.getElementById('passwordEye').style.border = "1px solid red";
+                document.getElementById('passwordEye').classList.toggle('incorrecto');
                 document.getElementById("spanPassword").innerHTML = "Remove the spaces";
-                document.getElementById("spanPassword").style.display = "block";
+                document.getElementById("spanPassword").classList.toggle('show');
             }
         }
     }else {
@@ -177,9 +174,11 @@ function acceder(usuario, password){
             USER.style.marginBottom = "15px";
             document.getElementById('carreras').style.marginBottom = "10px"
             document.getElementById('carreras').style.border = "none";
-            document.getElementById('passwordEye').style.border = "none";
-            document.getElementById("spanUser").style.display = "none";
-            document.getElementById("spanPassword").style.display = "none";
+
+            document.getElementById('passwordEye').classList.toggle('incorrecto');
+            document.getElementById("spanUser").classList.toggle('show');
+            document.getElementById("spanPassword").classList.toggle('show');
+
             document.getElementById('spanSelect').style.display = 'none';
             USER.value = "";
             PASSWORD.value = "";
@@ -192,13 +191,12 @@ function acceder(usuario, password){
 
 function controlCamposVacios() {
     if(USER.value == "") {
-        USER.style.border = "1px solid red";
-        USER.style.margin = "0px";
-        document.getElementById("spanUser").style.display = "block";
+        USER.classList.toggle('incorrecto');
+        document.getElementById("spanUser").classList.toggle('show');
     }
     if(PASSWORD.value == "") {
-        document.getElementById('passwordEye').style.border = "1px solid red";
-        document.getElementById("spanPassword").style.display = "block";
+        document.getElementById('passwordEye').classList.toggle('incorrecto');
+        document.getElementById("spanPassword").classList.toggle('show');
     }
 
     if(selectCarrera == "") {
@@ -225,20 +223,28 @@ function registrarseF() {
     /*
         cambiar, urgente
     */
-    document.getElementById('defaultCarrera').selected = true;
+    //document.getElementById('defaultCarrera').selected = true;
     document.getElementById('carreras').style.border = 'none';
     document.getElementById('carreras').style.marginBottom = "10px"
     document.getElementById('spanSelect').style.display = 'none';
-    USER.style.border = "none";
-    USER.style.marginBottom = "15px";
-    document.getElementById('passwordEye').style.border = "none";
-    document.getElementById("spanUser").style.display = "none";
-    document.getElementById("spanPassword").style.display = "none";
+    if(USER.classList.contains('incorrecto')) {
+        USER.classList.toggle('incorrecto');
+    }
+    if(document.getElementById('passwordEye').classList.contains('incorrecto')){
+        document.getElementById('passwordEye').classList.toggle('incorrecto');
+    }
+    if(document.getElementById("spanUser").classList.contains('show')){
+        document.getElementById("spanUser").classList.toggle('show');
+    }
+    if(document.getElementById("spanPassword").classList.contains('show')){
+        document.getElementById("spanPassword").classList.toggle('show');
+    }
     USER.value = "";
     PASSWORD.value = "";
-    ingresar.style.display= "none";
-    registrar.style.display = "block";
+    ingresar.classList.toggle('hidden');
+    registrar.classList.toggle('show');
     document.getElementById('container-avatar').classList.toggle('show');
+    document.getElementById('no-account').classList.toggle('hidden');
 }
 
 function pressKey() {
@@ -286,16 +292,70 @@ function init() {
         }
     });
 
+    
+    document.addEventListener('click',(e)=>{
+        if(document.getElementById('passwordEye').classList.contains('focus')) {
+            document.getElementById('passwordEye').classList.remove('focus');
+        }else{
+            if(e.target === document.getElementById('password')) {
+                document.getElementById('passwordEye').classList.add('focus');
+            }
+        }
+    });
+
+    PASSWORD.addEventListener('keypress', ()=>{
+        console.log(PASSWORD.value)
+        if(PASSWORD.value === '') {
+            document.getElementById('spanEyeShow').classList.remove('show');
+        }else{
+            document.getElementById('spanEyeShow').classList.add('show');
+        }
+    });
+
+    PASSWORD.addEventListener('mousemove', ()=>{
+        console.log(PASSWORD.value)
+        if(PASSWORD.value === '') {
+            document.getElementById('spanEyeShow').classList.remove('show');
+        }else{
+            document.getElementById('spanEyeShow').classList.add('show');
+        }
+    });
+
     initAvatar();
 }
 
 function initAvatar() {
-    for(let i=1; i<=9; i++) {
+    for(let i=1; i<=10; i++) {
         let img = document.getElementById('avt'+i);
         img.addEventListener('click',()=>{
-            srcAvatar = img.src;
+            getE('signin-avatar').src = img.src;
+            if(!img.src.includes('user-default')) {
+                getE('signin-avatar').style.width = '75px';
+                getE('signin-avatar').style.height = '75px';
+                getE('avatar-registro').classList.add('show');
+            }else{
+                getE('signin-avatar').style.width = '50px';
+                getE('signin-avatar').style.height = '50px';
+                getE('avatar-registro').classList.add('desvanecer');
+                setTimeout(()=>{
+                    getE('avatar-registro').classList.remove('show');
+                    getE('avatar-registro').classList.remove('desvanecer');
+                },2000);
+            }
+            srcAvatar = corregirLinkAvatar(img.src);
         });
     }
+}
+
+function corregirLinkAvatar(src) {
+    let s = Array.from(src);
+    s = './'+s.splice(29)
+    s = s.replace(/,/g, "");
+    return s;
+}
+
+function getE(id) {
+    return document.getElementById(id);
 }
 
 

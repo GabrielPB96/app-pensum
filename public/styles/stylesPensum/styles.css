@@ -54,6 +54,7 @@ body{
 }
 
 .header .avatar{
+    cursor: pointer;
     position: absolute;
     background-color: rgb(119, 219, 181);
     width: 61px;
@@ -91,9 +92,10 @@ body{
     }
 }
 .avatar-elige{
+    top: 45%;
     width: 130px;
     position: absolute;
-    right: 90px;
+    right: 80px;
     box-shadow: 0 0 5px 2px black;
     padding: 5px;
     border-radius: 10px;
@@ -464,5 +466,33 @@ body{
     }
     100%{
         transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+@media (max-width: 368px) {
+    .header .avatar{
+        width: 45px;
+        height: 45px;
+    }
+
+    .avatar img{
+        width: 37px;
+        height: 37px;
+    }
+
+    .avatar p{
+        top: 33px;
+        font-size: 13px;
+    }
+
+    .avatar-elige{
+        right: 60px;
+        background-color: azure;
+    }
+}
+
+@media (max-width: 485px) {
+    .avatar-elige{
+        top: 50%;
     }
 }

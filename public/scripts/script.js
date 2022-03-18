@@ -417,13 +417,13 @@ function cargarAvatar(usuario, carrera) {
             let u = s.val();
             let ruta = u.avatarPath;
             nameUser.innerHTML = capitalize(usuario);
-            if(ruta === 'default') {
+            if(ruta.includes('default')) {
                 //activar ventana para elegir un avatar :)
                 document.getElementById('avatar-elige').classList.remove('hidden');
             }else{
                 imgAvt.src = ruta;
-                imgAvt.style.width = '90px';
-                imgAvt.style.height = '90px';
+                imgAvt.style.width = '80px';
+                imgAvt.style.height = '80px';
             }
         }
     );
@@ -482,19 +482,26 @@ function init() {
     inac = setInterval(inactivo, 1000);
 
     document.getElementById('button-avatar').addEventListener('click',()=>{
-        document.getElementById('popup-avatar').classList.toggle('show');
-        if(!document.getElementById('button-avatar').classList.toggle('cerrar')){
-            document.getElementById('button-avatar').innerHTML = 'Elige un Avatar';
+        getE('popup-avatar').classList.toggle('show');
+        if(!getE('button-avatar').classList.toggle('cerrar')){
+            getE('button-avatar').innerHTML = 'Elige un Avatar';
         }else{
             document.getElementById('button-avatar').innerHTML = 'X';
         }
     });
-    document.getElementById('span-cerrar').addEventListener('click',()=>{
+    getE('span-cerrar').addEventListener('click',()=>{
         document.getElementById('avatar-elige').classList.toggle('hidden');
+        if(getE('popup-avatar').classList.contains('show')) {
+            getE('popup-avatar').classList.remove('show');
+            getE('button-avatar').classList.remove('cerrar')
+            getE('button-avatar').innerHTML = 'Elige un Avatar';
+        }
     });
     document.getElementById('avatar-elige').addEventListener('mouseenter', ()=>{
         document.getElementById('avatar-elige').classList.remove('animation');
-    })
+    });
+
+    let parpadear = true;
     document.getElementById('avatar-elige').addEventListener('mouseleave',()=>{
         //verificar si el avatarPath sigue en default
         dataBase.child('z-usuarios').child(localStorage.getItem('carrera')).child(localStorage.getItem('usuario')).once('value')
@@ -502,7 +509,7 @@ function init() {
             (s)=>{
                 let u = s.val();
                 let ruta = u.avatarPath;
-                if(ruta === 'default') {
+                if(ruta.includes('default') && parpadear) {
                     document.getElementById('avatar-elige').classList.add('animation');
                 }
             }
@@ -514,19 +521,42 @@ function init() {
             (s)=>{
                 let u = s.val();
                 let ruta = u.avatarPath;
-                if(ruta === 'default') {
+                if(ruta.includes('default')) {
                     document.getElementById('avatar-user').src = './assets/user-default.png';
                     document.getElementById('avatar-user').style.width = '53px';
                     document.getElementById('avatar-user').style.height = '53px';
+                }else{
+                    document.getElementById('avatar-user').src = ruta;
+                    document.getElementById('avatar-user').style.width = '80px';
+                    document.getElementById('avatar-user').style.height = '80px';
                 }
             }
         );
     });
+
+    getE('avatar-user').addEventListener('click',()=>{
+        if(getE('avatar-elige').classList.contains('hidden')) {
+            getE('avatar-elige').classList.remove('animation');
+            getE('avatar-elige').classList.toggle('hidden');
+            getE('span-cerrar').style.display = 'none';
+            if(getE('popup-avatar').classList.contains('show')) {
+                getE('popup-avatar').classList.remove('show');
+                getE('button-avatar').classList.remove('cerrar');
+                getE('button-avatar').innerHTML = 'Elige un Avatar';
+            }
+            parpadear = false;
+        }else{
+            if(getE('span-cerrar').style.display === 'none') {
+                getE('avatar-elige').classList.toggle('hidden');
+            }
+        }
+    });
+
     initAvatar(localStorage.getItem('carrera'), localStorage.getItem('usuario'));
 }
 
 function initAvatar(carrera, usuario) {
-    for(let i=1; i<=9; i++) {
+    for(let i=1; i<=10; i++) {
         let img = document.getElementById('avt'+i);
         img.addEventListener('click',()=>{
             //animar
@@ -534,12 +564,30 @@ function initAvatar(carrera, usuario) {
             //cambio en la base de datos y en la imagen
             dataBase.child('z-usuarios').child(carrera).child(usuario).update(
                 {
-                    'avatarPath' : img.src
+                    'avatarPath' : corregirLinkAvatar(img.src)
                 }
             );
             document.getElementById('avatar-user').src = img.src;
-            document.getElementById('avatar-user').style.width = '90px';
-            document.getElementById('avatar-user').style.height = '90px';
+            if(window.screen.availWidth > 367) { 
+                if(!img.src.includes('user-default')) {
+                    document.getElementById('avatar-user').style.width = '80px';
+                    document.getElementById('avatar-user').style.height = '80px';
+                }else{
+                    document.getElementById('avatar-user').style.width = '50px';
+                    document.getElementById('avatar-user').style.height = '50px';
+                }
+            }else{
+                if(!img.src.includes('user-default')) {
+                    document.getElementById('avatar-user').style.width = '60px';
+                    document.getElementById('avatar-user').style.height = '60px';
+                }else{
+                    document.getElementById('avatar-user').style.width = '37px';
+                    document.getElementById('avatar-user').style.height = '37px';
+                }
+            }
+            getE('popup-avatar').classList.remove('show');
+            getE('button-avatar').classList.remove('cerrar');
+            getE('button-avatar').innerHTML = 'Elige un Avatar';
             setTimeout(()=>{
                 img.classList.toggle('click');
             }, 1000);
@@ -550,15 +598,31 @@ function initAvatar(carrera, usuario) {
                 (s)=>{
                     let u = s.val();
                     let ruta = u.avatarPath;
-                    if(ruta === 'default') {
+                    //if(ruta.includes('default')) {
                         document.getElementById('avatar-user').src = img.src;
-                        document.getElementById('avatar-user').style.width = '90px';
-                        document.getElementById('avatar-user').style.height = '90px';      
-                    }
+                        if(!img.src.includes('user-default')) {
+                            getE('avatar-user').style.width = '80px';
+                            getE('avatar-user').style.height = '80px';      
+                        }else{
+                            getE('avatar-user').style.width = '50px';
+                            getE('avatar-user').style.height = '50px';
+                        }
+                    //}
                 }
             );
         });
     }
+}
+
+function getE(id) {
+    return document.getElementById(id);
+}
+
+function corregirLinkAvatar(src) {
+    let s = Array.from(src);
+    s = './'+s.splice(29)
+    s = s.replace(/,/g, "");
+    return s;
 }
 
 window.addEventListener("load", init);
